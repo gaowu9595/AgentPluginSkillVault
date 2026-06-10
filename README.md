@@ -13,11 +13,13 @@
 
 ## 当前快照
 
+- `claude-code/plugins/design-session/1.0.0/`：从本机 Claude Code 本地 marketplace 导入的 `design-session` 原始版本。
 - `codex/plugins/design-session/1.0.0/`：从本机 Codex 插件缓存导入的 `design-session` 转换版本。
 
 导入来源：
 
 ```text
+E:\py_workspace\knowledge-service\.claude\plugins\plugins\design-session
 C:\Users\Administrator\.codex\plugins\cache\claude2codex-local\design-session\1.0.0
 ```
 
