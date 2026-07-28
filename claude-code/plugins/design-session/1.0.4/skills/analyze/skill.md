@@ -62,7 +62,7 @@ description: 分析项目资料目录，逐个读取原始文件并落盘摘要�
 
    ```
    ## Page N 标注文字清单
-   
+
    | 序号 | 位置 | 颜色 | 内容 | 影响 |
    |------|------|------|------|------|
    | 1 | 右侧截图旁 | 红色 | "直接用当PSM主推销售的信息" | 项目销售字段来源 |
@@ -114,14 +114,14 @@ description: 分析项目资料目录，逐个读取原始文件并落盘摘要�
       ```python
       import urllib.request, json, sys
       sys.stdout.reconfigure(encoding='utf-8')  # 解决 Windows 中文编码问题
-      
+
       req = urllib.request.Request(
           f'https://api.figma.com/v1/files/{file_key}/nodes?ids={node_id}&depth=5',
           headers={'X-Figma-Token': token}
       )
       with urllib.request.urlopen(req, timeout=60) as resp:
           data = json.loads(resp.read().decode('utf-8'))
-      
+
       # 递归提取所有 TEXT 节点的 characters 字段
       def extract_texts(node):
           results = []
