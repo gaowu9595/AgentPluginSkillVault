@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirements Clarify"
+  short_description: "Separate scope and isolate decisive product questions"
+  default_prompt: "Use $requirements-clarify to separate mixed requirements, explain the user journey, absorb code-known facts, and leave only decisive product questions."
