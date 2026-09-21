@@ -5,5 +5,5 @@
 当前已导入：
 
 ```text
-codex/plugins/design-session/1.0.0/
+codex/plugins/design-session/1.0.4/
 ```

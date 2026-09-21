@@ -1,0 +1,211 @@
+{
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-21",
+  "versioningPolicy": {
+    "vaultVersion": "Version used by this repository for change tracking and offline deployment.",
+    "upstreamVersion": "Version declared by the original artifact when one exists.",
+    "snapshotVersion": "Use snapshot-YYYYMMDD or config-snapshot-YYYYMMDD when the artifact has no declared upstream version.",
+    "packageVersion": "Runtime package version for MCP/npm/pip dependencies when known.",
+    "crossClientSyncPolicy": "When any skill, plugin, or MCP artifact is added, updated, or removed, check both Claude Code and Codex forms. Sync both sides when applicable; when one side is not applicable, record the reason in this registry and docs/update-log.md."
+  },
+  "artifacts": [
+    {
+      "id": "claude-skill:browser-proxy-access",
+      "type": "claude-code-skill",
+      "name": "browser-proxy-access",
+      "path": "claude-code/skills/browser-proxy-access/",
+      "vaultVersion": "1.0.0",
+      "upstreamVersion": null,
+      "versionSource": "Mirrors codex-skill:browser-proxy-access; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "codex/skills/browser-proxy-access/",
+      "runtimeDependencies": [
+        "PowerShell",
+        "Python",
+        "Windows proxy settings or browser proxy/PAC data"
+      ]
+    },
+    {
+      "id": "claude-skill:doc",
+      "type": "claude-code-skill",
+      "name": "doc",
+      "path": "claude-code/skills/doc/",
+      "vaultVersion": "snapshot-20260627",
+      "upstreamVersion": null,
+      "versionSource": "Mirrors codex-skill:doc; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "codex/skills/doc/",
+      "runtimeDependencies": [
+        "python-docx",
+        "pdf2image",
+        "LibreOffice",
+        "Poppler"
+      ]
+    },
+    {
+      "id": "claude-skill:spreadsheet",
+      "type": "claude-code-skill",
+      "name": "spreadsheet",
+      "path": "claude-code/skills/spreadsheet/",
+      "vaultVersion": "snapshot-20260627",
+      "upstreamVersion": null,
+      "versionSource": "Mirrors codex-skill:spreadsheet; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "codex/skills/spreadsheet/",
+      "runtimeDependencies": [
+        "openpyxl",
+        "pandas",
+        "LibreOffice",
+        "Poppler"
+      ]
+    },
+    {
+      "id": "claude-skill:slides",
+      "type": "claude-code-skill",
+      "name": "slides",
+      "path": "claude-code/skills/slides/",
+      "vaultVersion": "snapshot-20260627",
+      "upstreamVersion": null,
+      "versionSource": "Mirrors codex-skill:slides; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "codex/skills/slides/",
+      "runtimeDependencies": [
+        "Node.js",
+        "PptxGenJS",
+        "Python",
+        "LibreOffice",
+        "Poppler"
+      ]
+    },
+    {
+      "id": "codex-skill:browser-proxy-access",
+      "type": "codex-skill",
+      "name": "browser-proxy-access",
+      "path": "codex/skills/browser-proxy-access/",
+      "vaultVersion": "1.0.0",
+      "upstreamVersion": null,
+      "versionSource": "Repository-assigned version; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-10",
+      "source": "E:\\AllWorkspace\\Trade\\.codex\\scripts\\ghelper-proxy.*",
+      "runtimeDependencies": [
+        "PowerShell",
+        "Python",
+        "Windows proxy settings or browser proxy/PAC data"
+      ]
+    },
+    {
+      "id": "codex-skill:doc",
+      "type": "codex-skill",
+      "name": "doc",
+      "path": "codex/skills/doc/",
+      "vaultVersion": "snapshot-20260627",
+      "upstreamVersion": null,
+      "versionSource": "Official Codex skill snapshot; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "C:\\Users\\Administrator\\.codex\\skills\\doc",
+      "runtimeDependencies": [
+        "python-docx",
+        "pdf2image",
+        "LibreOffice",
+        "Poppler"
+      ]
+    },
+    {
+      "id": "codex-skill:spreadsheet",
+      "type": "codex-skill",
+      "name": "spreadsheet",
+      "path": "codex/skills/spreadsheet/",
+      "vaultVersion": "snapshot-20260627",
+      "upstreamVersion": null,
+      "versionSource": "Official Codex skill snapshot; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "C:\\Users\\Administrator\\.codex\\skills\\spreadsheet",
+      "runtimeDependencies": [
+        "openpyxl",
+        "pandas",
+        "LibreOffice",
+        "Poppler"
+      ]
+    },
+    {
+      "id": "codex-skill:slides",
+      "type": "codex-skill",
+      "name": "slides",
+      "path": "codex/skills/slides/",
+      "vaultVersion": "snapshot-20260627",
+      "upstreamVersion": null,
+      "versionSource": "Official Codex skill snapshot; SKILL.md does not declare a version.",
+      "snapshotDate": "2026-06-27",
+      "source": "C:\\Users\\Administrator\\.codex\\skills\\slides",
+      "runtimeDependencies": [
+        "Node.js",
+        "PptxGenJS",
+        "Python",
+        "LibreOffice",
+        "Poppler"
+      ]
+    },
+    {
+      "id": "claude-plugin:design-session",
+      "type": "claude-code-plugin",
+      "name": "design-session",
+      "path": "claude-code/plugins/design-session/1.0.4/",
+      "vaultVersion": "1.0.4",
+      "upstreamVersion": "1.0.4",
+      "versionSource": ".claude-plugin/plugin.json",
+      "snapshotDate": "2026-09-20",
+      "source": "E:\\py_workspace\\knowledge-service\\.claude\\plugins\\plugins\\design-session",
+      "runtimeDependencies": ["Python >= 3.9（流程证据校验器）"],
+      "notes": "保留通用流程定义、流程图、证据校验、数据库分级审核和权限门禁。2026-09-20 同步接口可读契约、唯一详细定义位置、字段来源追溯及按影响复核规则；不新增审核轮次。"
+    },
+    {
+      "id": "codex-plugin:design-session",
+      "type": "codex-plugin",
+      "name": "design-session",
+      "path": "codex/plugins/design-session/1.0.4/",
+      "vaultVersion": "1.0.4+codex.20260920020027",
+      "upstreamVersion": "1.0.4",
+      "versionSource": ".codex-plugin/plugin.json",
+      "snapshotDate": "2026-09-20",
+      "source": "C:\\Users\\Administrator\\plugins\\design-session",
+      "runtimeDependencies": ["Python >= 3.9（流程证据校验器）"],
+      "notes": "当前 Codex 安装版为 1.0.4+codex.20260920020027。同步接口可读契约、唯一详细定义位置、字段来源追溯及按影响复核规则；保留通用流程证据校验、数据库风险分级、P2 不循环和已有有效证据复用。"
+    },
+    {
+      "id": "claude-mcp:mastergo-magic",
+      "type": "claude-code-mcp-server",
+      "name": "mastergo-magic",
+      "path": "claude-code/mcp-servers/mastergo-magic/",
+      "vaultVersion": "config-snapshot-20260627",
+      "upstreamVersion": null,
+      "package": "npm:@mastergo/magic-mcp",
+      "packageVersion": "unpinned",
+      "versionSource": "Mirrors codex-mcp:mastergo-magic; Claude Code config must be adapted to target client version.",
+      "snapshotDate": "2026-06-27",
+      "source": "codex/mcp-servers/mastergo-magic/",
+      "runtimeDependencies": [
+        "Node.js",
+        "@mastergo/magic-mcp",
+        "MG_MCP_TOKEN"
+      ]
+    },
+    {
+      "id": "codex-mcp:mastergo-magic",
+      "type": "codex-mcp-server",
+      "name": "mastergo-magic",
+      "path": "codex/mcp-servers/mastergo-magic/",
+      "vaultVersion": "config-snapshot-20260627",
+      "upstreamVersion": null,
+      "package": "npm:@mastergo/magic-mcp",
+      "packageVersion": "unpinned",
+      "versionSource": "Codex MCP config has no version; startup script uses npx -y without a package version.",
+      "snapshotDate": "2026-06-27",
+      "source": "C:\\Users\\Administrator\\.codex\\config.toml",
+      "runtimeDependencies": [
+        "Node.js",
+        "@mastergo/magic-mcp",
+        "MG_MCP_TOKEN"
+      ]
+    }
+  ]
+}

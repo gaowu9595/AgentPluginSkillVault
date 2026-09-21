@@ -1,0 +1,4 @@
+interface:
+  display_name: "Browser Proxy Access"
+  short_description: "Route shell network commands through browser Ghelper proxies."
+  default_prompt: "Use $browser-proxy-access to run a shell network command through the browser proxy."

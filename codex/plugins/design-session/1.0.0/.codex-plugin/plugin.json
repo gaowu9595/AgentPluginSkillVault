@@ -2,7 +2,7 @@
   "author": {
     "name": "MSSP Team"
   },
-  "description": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理",
+  "description": "\u8bbe\u8ba1\u4f1a\u8bdd\u7ba1\u7406 \u2014 \u9700\u6c42\u7406\u89e3\u3001\u8bbe\u8ba1\u63a8\u8fdb\u3001\u4e0a\u4e0b\u6587\u6301\u4e45\u5316\u7684\u5b8c\u6574\u8bbe\u8ba1\u751f\u547d\u5468\u671f\u7ba1\u7406",
   "interface": {
     "capabilities": [
       "Read",
@@ -14,8 +14,8 @@
     ],
     "developerName": "MSSP Team",
     "displayName": "Design Session",
-    "longDescription": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理",
-    "shortDescription": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理"
+    "longDescription": "\u8bbe\u8ba1\u4f1a\u8bdd\u7ba1\u7406 \u2014 \u9700\u6c42\u7406\u89e3\u3001\u8bbe\u8ba1\u63a8\u8fdb\u3001\u4e0a\u4e0b\u6587\u6301\u4e45\u5316\u7684\u5b8c\u6574\u8bbe\u8ba1\u751f\u547d\u5468\u671f\u7ba1\u7406",
+    "shortDescription": "\u8bbe\u8ba1\u4f1a\u8bdd\u7ba1\u7406 \u2014 \u9700\u6c42\u7406\u89e3\u3001\u8bbe\u8ba1\u63a8\u8fdb\u3001\u4e0a\u4e0b\u6587\u6301\u4e45\u5316\u7684\u5b8c\u6574\u8bbe\u8ba1\u751f\u547d\u5468\u671f\u7ba1\u7406"
   },
   "keywords": [
     "design",
@@ -27,5 +27,5 @@
   "license": "UNLICENSED",
   "name": "design-session",
   "skills": "./skills/",
-  "version": "1.0.0"
+  "version": "1.0.0+codex.local-20260721-090150"
 }

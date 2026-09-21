@@ -48,9 +48,10 @@ $tokenChecks = [ordered]@{
     'skills/database-review/SKILL.md' = @(
         'name: database-review',
         'P0/P1',
-        '独立 Agent',
+        '最小化门禁',
+        'quick/delta/full/deterministic-only',
         'blocked',
-        '原始输出可核验'
+        'scope_passed'
     )
     'skills/database-review/agents/openai.yaml' = @(
         'display_name: "数据库设计审核"',
@@ -60,8 +61,8 @@ $tokenChecks = [ordered]@{
         '逐表审核',
         '逐字段审核',
         '删除挑战',
-        '对账公式',
-        '冷读解释性'
+        '最小化门禁',
+        '独立最小模型'
     )
     'skills/database-review/references/evidence-template.md' = @(
         'CODE-FACT',
@@ -70,16 +71,16 @@ $tokenChecks = [ordered]@{
         'ASSUMPTION'
     )
     'skills/database-review/references/reviewer-prompts.md' = @(
-        '数据模型 Agent',
-        '工程与资金安全 Agent',
+        '数据模型最小化 Agent',
+        '数据库工程 Agent',
         '不要给最终 passed 结论',
-        '高风险字段处置表'
+        '不创建计划'
     )
     'skills/database-review/references/report-template.md' = @(
         '主 Agent 裁决',
-        '最终门禁结论',
-        '高风险字段处置',
-        '原始输出路径和 SHA-256'
+        '最终结论',
+        '最小化结论',
+        'scope_passed'
     )
 }
 
@@ -119,7 +120,7 @@ if ($shortDescriptionLength -lt 25 -or $shortDescriptionLength -gt 64) {
 }
 
 $fixtures = Get-PluginText -RelativePath 'skills/database-review/references/fixtures/cases.md'
-1..14 | ForEach-Object {
+1..15 | ForEach-Object {
     $id = 'CASE-{0:d2}' -f $_
     if (-not $fixtures.Contains($id)) {
         throw "Missing fixture: $id"

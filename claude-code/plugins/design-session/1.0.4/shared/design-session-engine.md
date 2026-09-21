@@ -23,6 +23,74 @@
 
 ---
 
+## 阶段状态与门禁
+
+> 流程唯一来源为 `shared/workflow.json`，分支图见 [完整流程图](workflow-flowchart.md)。涉及阶段推进、下一步、审查或完成结论时，必须读取 [流程规则](workflow.md)，运行 `shared/scripts/workflow_gate.py evaluate <项目>`。`context.md` 保存摘要；项目 `.ai/workflow-state.json` 保存证据状态。缺失按未知处理，先核验并登记已有证据，不强制从头重跑。
+
+`analyze` 登记 input_gate；`requirements-clarify` 登记 clarification_gate；`write-spec` 登记 spec_gate（覆盖自检和确认/明确兜底）；`write/write-overall` 编写完成后登记 design_gate（仅代表待审设计已有）；`write/check/database-review` 登记各自实际检查的门禁。每项用 record 保存报告和实际输入指纹，不能以执行过命令、文件存在或人工填写 ready 代替通过。并行审查只返回报告，由主 Agent 串行登记。
+
+旧项目的下列短状态只用于定位证据，不直接换算为新状态的 passed；新状态中数据库、安全统一使用 `_gate`。进入编码的唯一计算结果是 evaluate 的 ready=true，且只对登记范围成立。
+
+建议状态字段：
+
+```text
+input_status: missing/analyzed/stale/partial
+journey_status: missing/draft/confirmed
+p0_status: open/closed
+spec_status: missing/draft/locked
+design_status: missing/draft/ready
+content_gate: unknown/pending/passed/blocked
+template_gate: not_run/failed/passed
+database_gate: not_applicable/pending/scope_passed/passed/stale/blocked
+security_gate: not_applicable/pending/passed/stale/blocked
+code_status: not_started/in_progress/verified
+```
+
+阶段门禁：
+
+| 目标动作 | 必须满足 |
+|---|---|
+| 写系统需求 | `input_status=analyzed`、`journey_status=confirmed`、`p0_status=closed` |
+| 写概要设计 | `spec_status=locked`，或明确记录的暂用兜底方案 |
+| 进入编码 | evaluate 返回 ready=true；当前范围的全部适用门禁有有效证据，且无未关闭 P0/P1 |
+| 变更后继续编码 | 受影响审核标记必须变为 `stale`，不能沿用旧的 `passed` |
+
+状态只记录阶段结论，不复制设计正文。每次更新状态时写明日期、依据文件和变更编号。`content_gate` 只代表需求/设计内容覆盖，`template_gate` 只代表确定性模板结构检查；任一适用门禁未通过，都不得把 `design_status` 标为 `ready`，也不能用 Agent 语义审查结果代替模板脚本结果。
+
+## 证据台账与项目基线
+
+原始资料、代码和截图都可能是不完整或由 AI 生成的。涉及业务规则、金额、计费、权限、状态、外部数据或事务的结论，必须能回溯到证据台账：
+
+| 结论 | 来源 | 定位 | 证据类型 | 可信度 | 是否需要回溯 |
+|---|---|---|---|---|---|
+| <结论> | <文件或代码路径> | <章节、页面、符号或行> | 原文/截图/代码/推断 | 高/中/低 | 是/否 |
+
+摘要只能作为索引，不能代替原始证据。摘要与原文、代码或截图冲突时，以可定位的原始证据为准，并把冲突留在内部事实基线中。
+
+多仓库项目必须在 `.ai/README.md` 或 `context.md` 记录每个仓库的路径、分支、基线 commit、职责和权限事实源。`git diff`、代码覆盖度和审查输入都按仓库分别执行，不能默认使用项目根目录的 Git 状态。
+
+## 审查输入指纹与增量复审
+
+每次 `analyze`、`check` 或数据库/安全审查结束时，记录：
+
+```text
+reviewed_at: YYYY-MM-DD
+input_fingerprint: <源文件/设计文件/代码对象的 hash 或等价摘要>
+scope: <本次检查对象>
+result: <passed/failed/scope_passed/blocked>
+```
+
+后续执行先比较指纹：
+
+1. 输入未变化且范围未扩大，直接复用上次结论，不重复读取或启动 Agent；
+2. 只有受影响对象变化时，执行增量复审，并保留未变化对象的结论；
+3. 表拓扑、事务边界、权限事实源或外部契约变化时，升级到对应完整审查；
+4. 连续修订阶段不得自动反复执行完整审查，先登记未关闭问题，模型稳定后一次性认证。
+
+审查输出必须先报告读取范围、预计文件数和 Agent 数量，再开始读取或委派；无法取得必要输入时停止并报告 `blocked`，不得用猜测补齐。
+
+---
+
 ## 核心设计原则：分层恢复
 
 > **AI 的上下文窗口是有限的。恢复上下文的目标不是"读完所有文件"，而是"用最少的读取量达到能正确工作的状态"。**
@@ -98,9 +166,18 @@
 
 #### 变更分级（自动判断）
 
-**分级判断方法**：Grep 搜索变更相关关键词，根据命中文件数自动判断：
+**分级判断方法**：先按语义风险判断，再用命中文件数作为无法识别语义时的保守提示。文件数量不能单独决定数据库、资金、权限、状态机或外部契约变更的级别。
 
-| 命中文件数 | 级别 | 传播策略 |
+高风险语义触发至少 L2，并按对应审查技能升级：
+
+- 数据库表/字段/约束/索引、事务边界、幂等、账务或积分不变量；
+- 权限事实源、角色数据范围、越权防护或 Casbin/权限点映射；
+- 计费、金额、服务起止、状态终态、外部系统数据口径；
+- 外部接口契约、消息语义、未知结果恢复或定时任务触发时点。
+
+仅在未命中上述语义时，才参考 Grep 命中文件数：
+
+| 命中文件数（无高风险语义） | 级别 | 传播策略 |
 |-----------|------|---------|
 | ≥4 个文件 | **L1 架构级** | 输出影响分析表 → 执行 P0 → 登记延后项 |
 | 2~3 个文件 | **L2 模块级** | 输出影响分析表 → 执行 P0 → 登记延后项 |

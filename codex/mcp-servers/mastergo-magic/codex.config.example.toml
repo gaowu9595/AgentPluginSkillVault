@@ -1,0 +1,3 @@
+[mcp_servers.mastergo-magic]
+command = "powershell"
+args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "E:\\AllWorkspace\\AgentPluginSkillVault\\codex\\mcp-servers\\mastergo-magic\\start_mastergo_magic_mcp.ps1"]

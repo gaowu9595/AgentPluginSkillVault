@@ -1,0 +1,17 @@
+{
+  "name": "design-session",
+  "description": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理",
+  "version": "1.0.2",
+  "author": {
+    "name": "MSSP Team"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "design",
+    "session",
+    "architecture",
+    "persistence",
+    "workflow",
+    "database-review"
+  ]
+}

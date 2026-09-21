@@ -14,88 +14,92 @@ function Read-RequiredFile {
     Get-Content -Raw -Encoding UTF8 -LiteralPath $path
 }
 
-$skill = Read-RequiredFile 'skills/database-review/SKILL.md'
-$criteria = Read-RequiredFile 'skills/database-review/references/review-criteria.md'
-$evidence = Read-RequiredFile 'skills/database-review/references/evidence-template.md'
-$prompts = Read-RequiredFile 'skills/database-review/references/reviewer-prompts.md'
-$report = Read-RequiredFile 'skills/database-review/references/report-template.md'
-$fixtures = Read-RequiredFile 'skills/database-review/references/fixtures/cases.md'
+$texts = @{
+    'SKILL.md' = Read-RequiredFile 'skills/database-review/SKILL.md'
+    'review-criteria.md' = Read-RequiredFile 'skills/database-review/references/review-criteria.md'
+    'evidence-template.md' = Read-RequiredFile 'skills/database-review/references/evidence-template.md'
+    'reviewer-prompts.md' = Read-RequiredFile 'skills/database-review/references/reviewer-prompts.md'
+    'report-template.md' = Read-RequiredFile 'skills/database-review/references/report-template.md'
+    'fixtures.md' = Read-RequiredFile 'skills/database-review/references/fixtures/cases.md'
+    'write-skill.md' = Read-RequiredFile 'skills/write/SKILL.md'
+}
 
 $checks = [ordered]@{
     'SKILL.md' = @(
-        'review-mode: full/delta/deterministic-only',
-        'failed-baseline-can-delta',
-        'no-fullstack-agent',
-        'p2-no-loop',
-        'max-auto-repair-rounds: 1',
-        'fail-fast-codes: 401/402/403',
-        'no-retry-payment-auth',
-        'coding_readiness'
+        'review-mode: quick/delta/full/deterministic-only',
+        'review-only-no-plan',
+        'no-auto-full-escalation',
+        'minimality-first',
+        'risk-based-new-field',
+        'max-agents-quick-0-delta-1-full-2',
+        'scope_passed',
+        'needs_full'
     )
     'review-criteria.md' = @(
-        'complete-baseline',
-        'change-impact-matrix',
-        'coverage-inheritance',
-        'transaction-topology'
+        'M1-local-field=>quick',
+        'M3-bounded-semantic-change=>delta',
+        'M4-table-topology-change=>full',
+        'object-baseline',
+        'coverage-inheritance'
     )
     'evidence-template.md' = @(
-        'baseline-review-chain',
-        'delta-change-manifest',
-        'unchanged-scope-inheritance',
-        'estimated-review-cost'
+        'template-kind: database-review-evidence-v3',
+        'quick-no-full-evidence',
+        'implementation plan'
     )
     'reviewer-prompts.md' = @(
-        'delta-data-model-reviewer',
-        'delta-money-engineering-reviewer',
-        'do-not-reread-full-design',
-        'affected-scope-only'
+        'quick-no-agent',
+        'independent-minimal-model',
+        'review-no-plan'
     )
     'report-template.md' = @(
-        'review-mode-and-cost',
-        'inherited-coverage-conclusions',
-        'automatic-repair-rounds',
-        'coding_readiness'
+        'template-kind: database-review-report-v3',
+        'scope-result-supported',
+        'scope_passed'
     )
-}
-
-$texts = @{
-    'SKILL.md' = $skill
-    'review-criteria.md' = $criteria
-    'evidence-template.md' = $evidence
-    'reviewer-prompts.md' = $prompts
-    'report-template.md' = $report
+    'write-skill.md' = @(
+        'database-review-auto-route',
+        'database-review-no-force-full',
+        'scope_passed'
+    )
 }
 
 foreach ($file in $checks.Keys) {
     foreach ($token in $checks[$file]) {
         if (-not $texts[$file].Contains($token)) {
-            throw "Missing V2 token '$token' in $file"
+            throw "Missing efficiency token '$token' in $file"
         }
     }
 }
 
-if ($skill.Contains('仅在已有有效通过标记')) {
-    throw 'Legacy rule still forces failed complete baselines back to full review'
+if ($texts['write-skill.md'].Contains('execute-full-database-review')) {
+    throw 'write skill still forces full database review'
 }
 
-10..14 | ForEach-Object {
+1..15 | ForEach-Object {
     $caseId = 'CASE-{0:d2}' -f $_
-    if (-not $fixtures.Contains($caseId)) {
-        throw "Missing efficiency fixture: $caseId"
+    if (-not $texts['fixtures.md'].Contains($caseId)) {
+        throw "Missing generic fixture: $caseId"
     }
 }
 
-$modeRows = @(
-    'M1 no-complete-baseline=>full',
-    'M2 failed-complete-baseline+local-check-change=>delta',
-    'M3 table-topology-change=>full',
-    'M4 transaction-topology-change=>full',
-    'M5 explanation-or-format-only=>deterministic-only'
+$databaseReviewRoot = Join-Path $PluginRoot 'skills/database-review'
+$allSkillText = (Get-ChildItem -LiteralPath $databaseReviewRoot -Recurse -File |
+    ForEach-Object { Get-Content -Raw -Encoding UTF8 -LiteralPath $_.FullName }) -join "`n"
+
+$forbiddenProjectTerms = @(
+    'OverseaPartner',
+    'monthly_credit',
+    'credit_change',
+    'reserved_amount',
+    'shortfall_points',
+    'invoice_item'
 )
-foreach ($row in $modeRows) {
-    if (-not $criteria.Contains($row)) {
-        throw "Missing mode decision row: $row"
+
+foreach ($term in $forbiddenProjectTerms) {
+    if ($allSkillText.Contains($term)) {
+        throw "Project-specific term '$term' found in database-review skill"
     }
 }
 
-Write-Host 'database-review efficiency validation passed'
+Write-Host 'database-review generic efficiency validation passed'

@@ -1,6 +1,6 @@
 ---
 name: write-spec
-description: 系统需求编写模式。按"输入就绪→功能点拆分→逐点编写→交互覆盖度自检→DFX→完成"流程编写系统需求卡片。适用于后端或全栈需求；保留既有评审章节，并强制覆盖前端页面、状态、校验、反馈与前后端契约。用法：/design-session:write-spec <项目目录>
+description: 系统需求编写模式。按"输入就绪→功能点拆分→逐点编写→交互覆盖度自检→DFX→完成"流程编写系统需求卡片。适用于后端或全栈需求；保留既有评审章节，并强制覆盖前端页面、状态、校验、反馈与前后端契约。用法：/design-session:write-spec 项目目录
 ---
 
 # write-spec（系统需求编写）
@@ -8,6 +8,8 @@ description: 系统需求编写模式。按"输入就绪→功能点拆分→逐
 **参数**：`$ARGUMENTS` = `<项目目录>`
 
 **REQUIRED BACKGROUND:** Read `shared/design-session-engine.md` for path conventions.
+
+按 `shared/workflow.md` 核验 input_gate 和 clarification_gate 的证据。完成覆盖自检且需求已确认（或已有授权的明确兜底）后，登记 spec_gate、报告与实际输入指纹；仅“文档已写完”仍是 draft，不能登记为 passed。额外 check quality 保持可选，不重复已有自检。
 
 ## 按需加载索引（不要预读，到对应步骤时再 Read）
 
@@ -28,6 +30,8 @@ description: 系统需求编写模式。按"输入就绪→功能点拆分→逐
 
 - 交互稿摘要已落盘（`.ai/*-摘要.md`）
 - 如无摘要 → 先执行 `/design-session:analyze`
+- `input_status` 必须为 `analyzed`；摘要指纹过期或关键证据未核验时先回到 `analyze`
+- `journey_status` 必须为 `confirmed`，`p0_status` 必须为 `closed`；否则先执行 `/design-session:requirements-clarify`
 
 ## 执行流程
 
@@ -44,6 +48,7 @@ description: 系统需求编写模式。按"输入就绪→功能点拆分→逐
 3. 确认摘要中有"交互规则汇总"章节（§四）
    - 如果没有（旧格式摘要）→ 从摘要全文中手动提取交互规则列表
 4. 读 `<项目>/.ai/corrections.md` — 避免重蹈覆辙
+5. 记录本次使用的输入指纹；写作结束时将 `spec_status` 更新为 `draft`，用户评审通过后再更新为 `locked`
 
 **缺少摘要 → 暂停，告知用户需要先分析交互稿。**
 

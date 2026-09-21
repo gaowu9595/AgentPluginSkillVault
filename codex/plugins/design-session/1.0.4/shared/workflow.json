@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "gates": [
+    {"id": "input_gate", "label": "分析原始资料", "action": "analyze", "aliases": []},
+    {"id": "clarification_gate", "label": "用户旅程确认，产品阻塞已解决", "action": "requirements-clarify", "aliases": [], "question": "产品阻塞已解决？"},
+    {"id": "spec_gate", "label": "系统需求及覆盖自检，确认或明确兜底", "action": "write-spec", "aliases": [], "question": "需求已确认或已有明确兜底？"},
+    {"id": "design_gate", "label": "按选定模板定稿设计", "action": "write", "actions_by_type": {"overall": "write-overall"}, "aliases": [],
+     "interface_review": {"question": "涉及新增或变更接口？", "source": "按风险核实调用链与复用能力", "flow": "说明业务例子与关键流程", "fields": "逐字段核对用途、删除影响及取舍", "decision": "接口与参数理由明确？"}},
+    {"id": "template_gate", "label": "模板和可读性检查", "action": "check design-quality", "actions_by_type": {"micro": "write", "overall": "write-overall"}, "aliases": [], "question": "模板检查通过？"},
+    {"id": "database_gate", "label": "数据库审核，按风险选范围", "action": "check database", "aliases": ["database_review"], "optional": true, "question": "涉及持久化或事务变更？", "scope_result": true},
+    {"id": "security_gate", "label": "安全和权限证据审核", "action": "check security", "aliases": ["security_review"], "optional": true, "question": "涉及安全边界或用户接口？"},
+    {"id": "content_gate", "label": "需求、接口必要性及一致性检查", "action": "check consistency", "aliases": []}
+  ],
+  "completion": {"question": "所有适用检查通过且证据有效？", "ready": "保留代码基线，进入编码", "repair": "修复缺项，只复查受影响项"},
+  "change_review": {"trigger": "资料、需求或设计发生变更", "question": "是否影响已有审核结论？", "reuse": "核验变更范围，复用未受影响证据"}
+}

@@ -16,7 +16,7 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 /design-session:check quality <系统需求卡片路径>            # 单张卡片质量评估
 /design-session:check quality <项目目录>                   # 批量评估项目下所有系统需求卡片
 /design-session:check design-quality <概要设计路径> [--baseline=<重构前文档> --attachments=<附件1,附件2>]
-/design-session:check database <概要设计路径或项目目录> [--full|--incremental] [--fix]
+/design-session:check database <概要设计路径或项目目录> [--quick|--incremental|--full] [--fix]
 /design-session:check security <概要设计文档路径>           # 安全设计审查（单文档）
 /design-session:check security <项目目录>                  # 安全设计审查（批量）
 /design-session:check <规范文档路径>                        # 外部规范对照（原有功能）
@@ -31,7 +31,7 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 - `consistency` → 模式 1（内部一致性）
 - `quality` → 模式 3（质量评估）
 - `design-quality` → 模式 4（概要设计可读性与信息分层检查）
-- `database` → 数据库设计严格审核：完整读取 `../database-review/SKILL.md`，将剩余参数原样传入；由该 Skill 自动选择 full/delta/deterministic-only，本文件不复制数据库审核标准。
+- `database` → 数据库设计严格审核：完整读取 `../database-review/SKILL.md`，将剩余参数原样传入；由该 Skill 自动选择 quick/delta/full/deterministic-only，本文件不复制数据库审核标准。
 - `security` → 模式 5（安全设计审查）
 - `resume` → 恢复中断的分析
 - 其他（文件路径）→ 模式 2（外部规范对照）
@@ -39,45 +39,13 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 
 ### 无参数智能路由
 
-当用户只输入 `/design-session:check` 不带参数时，基于可观测信号自动推荐：
+读取 `shared/workflow.md`，与 next 一样运行 `workflow_gate.py evaluate <项目>`。按 next_action 及各项原因选择缺失/过期的检查；早期输入或产品决策尚未就绪时先报告该阻塞。报告有效且范围未变则复用，不以是否出现 HTML passed 注释判定，也不假定所有仓库都存在 HEAD~5。
 
-**路由规则（按优先级顺序匹配）**：
+用户已要求检查时直接执行授权范围内的检查，无需重复确认。quality、外部规范对照仍支持显式调用，但不因为无参数路由而变成新的必做步骤。
 
-| 信号（可观测） | 推荐模式 | 理由 |
-|--------------|---------|------|
-| context.md 当前阶段含"系统需求" AND 存在未评估的 `迭代*-*-系统需求.md` | quality | 进概设前确认需求质量 |
-| 最近 git diff 涉及 ≥2 个 `架构设计/` 下的设计文档 | consistency | 多文档改动后检查一致性 |
-| 概要设计主文档超过 60,000 非空白字符、超过同类文档中位数 1.5 倍，或存在超过 500 字符正文段落/150 行代码块 | design-quality | 先确认人可评审，并防止拆分时丢失编码合同 |
-| 概要设计含 CREATE/ALTER TABLE、ORM/迁移变更，且无有效 database-review passed 标记 | database | 数据模型必须在安全审查和编码前通过强制审核 |
-| 存在概要设计文档 AND 文档内无 `<!-- security-check: passed -->` 标记 | security | 概设完成但未通过安全审查 |
-| 参数是文件路径 AND 文件扩展名为 .xlsx/.pdf/.md 且内容为规范/基线类 | baseline | 合规对照 |
-| 以上均不匹配 | 列出所有可选模式 + 标注推荐 | 兜底 |
+完成后由主 Agent 按 `shared/workflow.md` 登记实际检查结果、范围、报告和输入指纹。design-quality 只登记 template_gate，security 只登记 security_gate；consistency 结合已有覆盖自检才能登记 content_gate，不用名称一致性通过冒充需求覆盖通过。database 委派 database-review，不再执行第二轮相同审核。
 
-**执行流程**：
-1. 读 `<项目>/.ai/context.md` 获取当前阶段
-2. 执行 `git diff --name-only HEAD~5` 获取最近改动文件
-3. Glob `<项目>/架构设计/概要设计/*.md` 检查 database-review 和 security 标记
-4. 匹配规则 → 输出推荐（含理由）→ 用户确认后执行
-
-**输出格式**：
-```
-## 检查推荐
-
-基于当前项目状态：
-- 当前阶段：<阶段>
-- 最近改动：<N 个设计文档>
-
-→ 推荐执行：**<模式名>**
-→ 原因：<一句话>
-
-确认执行？或选择其他模式：consistency / quality / design-quality / database / security / baseline
-```
-
-**审查通过标记**：security 模式审查通过后，在设计文档末尾追加：
-```html
-<!-- security-check: passed YYYY-MM-DD -->
-```
-下次智能路由时识别此标记，不再重复推荐。
+旧 HTML passed 注释仅作历史索引；不新增此类注释，不用它替代证据状态。已有报告必须核验当时输入和当前范围后才能迁移。
 
 ---
 
@@ -176,6 +144,14 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 1. 所有变更记录的 checkbox 是否全部完成
 2. 未完成的 checkbox 对应文件是否确实未更新
 
+#### DIM-7：接口可读契约与维护位置
+
+检查新增/变更的API或消息接口时，读取 `../write/references/design-guide.md` 的“可读接口与唯一维护位置”，将其核对表纳入本次content_gate报告。检查用途、处理过程、中文字段/空值/错误与调用动作、Schema一致性以及唯一详细定义位置；不能只检查JSON解析或字段同名。已有不变接口核对准确引用，不重写。
+
+同时完整读取 `../write/references/interface-review.md`。按其§1确定范围，§2核对接口用途与替代方案，§3检查适用的外部实际规则，§4逐字段检视来源/消费者/删除影响及兼容，§5复述主流程和关键失败，按§6输出证据和具体缺口。普通字段不能只写“必须”；接口和字段均不能按数量越少越好判断。不新增一轮独立审核，纯排版变化按该规则的轻量分支执行。
+
+纯说明调整仅复查差量及引用，不重启模型/安全全量审查；发现真实契约、权限或持久化语义变化再扩大到对应影响面。报告区分结构检查通过与可读内容通过，缺口按对实现/对接的实际影响定级。
+
 ### 执行流程
 
 **Step 1**：收集文档清单（Glob `<项目>/架构设计/**/*.md`）
@@ -191,7 +167,7 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 
 > 检查时间：YYYY-MM-DD
 > 扫描范围：N 个文件，共 M 行
-> 检查维度：6 个
+> 检查维度：DIM-1～7，按当前变更适用范围记录
 
 ## 检查结果概览
 
@@ -366,10 +342,14 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 
 ### 判定与报告
 
+`design-quality` 只判定文档结构和可读性，不代替业务、数据库或安全审查。报告必须把以下状态分开输出：`template_gate`、`content_gate`、`database_gate`、`security_gate`。其中 `template_gate` 是硬门禁：确定性脚本失败时，即使内容覆盖或 Agent 语义审查通过，整体仍为 FAIL；只有脚本退出码为 0 才能标记 `template_gate=passed`。
+
 | 结果 | 条件 | 后续动作 |
 |---|---|---|
 | PASS | 强制章节、体量、段落、代码块、方案选型、链接及可选基线合同全部通过 | 可进入数据库/安全审核 |
 | FAIL | 任一硬门禁失败 | 修正文档或补齐附件后只重跑确定性脚本 |
+
+禁止把“内容完整”“Agent 已审核”或“附件存在”当成模板通过。数据库和安全审核只能在 `template_gate=passed` 后进入；各自的 `passed` 也不能反向覆盖模板 FAIL。
 
 报告必须先给结论，再列 `MAIN_NONSPACE_CHARS`、`PEER_MEDIAN_CHARS`、`EFFECTIVE_LIMIT`、长段落数、最大代码块行数、附件数和每条错误。主文档必须保留整体方案、关键流程、表职责/关系、核心字段和不变量；完整 DTO、DDL、函数 manifest、测试矩阵可放编码附件。
 
@@ -490,6 +470,7 @@ description: 设计文档规范检查（一致性/合规对照/需求质量/概�
 2. 区分"设计层面有方案"和"已落地已验证"— 本审查只检查设计完整性
 3. 如项目有权限架构参考文档，以其为基线判断权限注册是否完整
 4. 不要因为模板有安全章节就假设内容充分 — 逐条验证具体性
+5. 不得把结构门禁、内容门禁、数据库门禁和安全门禁合并成一个“已通过”结论；缺少任何适用门禁的证据时只能报告 pending/blocked。
 
 ---
 

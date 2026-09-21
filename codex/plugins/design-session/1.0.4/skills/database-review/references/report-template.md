@@ -1,165 +1,76 @@
-# 数据库设计审核报告
+# 数据库审核报告模板
 
-## 0. V2 审核模式与成本（review-mode-and-cost）
+机器标识：`template-kind: database-review-report-v3`、`scope-result-supported`。
+
+## 0. 模式与成本
 
 | 项目 | 内容 |
 |---|---|
-| review mode | full/delta/deterministic-only |
-| baseline report/evidence/raw outputs | 路径 + SHA-256 |
-| changed tables/fields/invariants | N/N/N |
-| files read | N + 路径清单 |
-| selected agents | none/data-model/money-engineering/both + 理由 |
-| automatic-repair-rounds | 0/1 |
+| review mode | quick/delta/full/deterministic-only |
+| baseline | none/object/complete + 摘要 |
+| changed tables/fields/constraints/invariants | N/N/N/N |
+| files read | N + 白名单 |
+| selected agents | 0/1/2 + 理由 |
+| implementation plan | none |
+| automatic repair rounds | 0/1 |
 
-### 0.1 继承的覆盖结论（inherited-coverage-conclusions）
+## 1. 最小化结论
 
-| 对象 | 基线覆盖 | 当前未变化 | 本轮 delta 覆盖 | 合并后覆盖 | 证据 hash |
+| 对象 | 复用 | 计算/关联 | 合并 | 不持久化 | 删除后具体失败 | 最终结论 | 证据 |
+|---|---|---|---|---|---|---|---|
+
+结论只能是：`保留 / 合并 / 扩展现有对象 / 删除 / 证据不足阻塞`。
+
+## 2. 受影响范围覆盖
+
+| 对象类型 | 基线覆盖 | 未变化 | 本轮覆盖 | 合并后覆盖 | 摘要 |
 |---|---:|---:|---:|---:|---|
 | 表 | | | | | |
 | 字段 | | | | | |
 | 查询/索引 | | | | | |
 | 写入路径/不变量 | | | | | |
 
-delta 必须列出受影响对象名称；不得只写百分比。full 的继承列写不适用。
+quick/delta 必须列出受影响对象名称，不得复制未变化对象的逐字段报告。
 
-## 1. 审核范围与证据完整度
-
-| 项目 | 内容 |
-|---|---|
-| 概要设计 | |
-| 证据包 | |
-| 设计摘要 | |
-| 代码基线 | |
-| 审核模式 | full/incremental/fix |
-| 表覆盖率 | 已审核数/总数/百分比 |
-| 字段覆盖率 | 已审核数/总数/百分比 |
-| 数据模型 Agent | 完成/未完成，输入摘要、原始输出路径和 SHA-256 |
-| 工程与资金安全 Agent | 完成/未完成，输入摘要、原始输出路径和 SHA-256 |
-| 冷读检查 | 通过/未通过/未执行 |
-
-## 2. 新增/修改/复用/删除表总览
-
-| 表 | 变更类型 | 保存的事实 | 事实类型 | 敏感数据 | 最终结论 | 证据 |
-|---|---|---|---|---|---|---|
-
-## 3. 门禁概览
-
-| 级别 | 初始数量 | 已修复 | 已拒绝/降级 | 未解决 | 是否清零 |
-|---|---:|---:|---:|---:|---|
-| P0 | | | | | |
-| P1 | | | | | |
-| P2 | | | | | 不适用 |
-
-## 4. P0/P1/P2 问题
-
-每个问题使用以下格式：
+## 3. 问题与裁决
 
 ```text
 问题 ID：DBR-001
 级别：P0/P1/P2
-来源 Agent：数据模型/工程与资金安全/主 Agent 预检/冷读
+来源：确定性检查/数据模型 Agent/数据库工程 Agent
 位置：设计或代码精确位置
-证据：CODE-FACT/REQ-FACT/DECISION/ASSUMPTION 编号
+证据：REQ-FACT/CODE-FACT/DECISION/ASSUMPTION
 问题：
-影响或被破坏的不变量：
-建议：
-主 Agent 裁决：接受并修复/依据证据拒绝/依据理由降级为 P2/阻塞并等待输入
-裁决理由：
-处理结果：
-重跑范围：预检/受影响 Agent/双 Agent/证据包
+被破坏的不变量：
+最小修正：
+主 Agent 裁决：接受/拒绝/降级/阻塞
+回归范围：quick/delta/full
 ```
 
-## 5. 逐表结论
+## 4. 关系、查询与写入结论
 
-| 表 | 现有模型不足 | 删除挑战结果 | 数据模型 Agent | 工程 Agent | 主 Agent 最终结论 | 理由 |
-|---|---|---|---|---|---|---|
-
-结论只能是：`保留 / 合并 / 扩展现有表 / 删除 / 证据不足阻塞`。
-
-## 6. 逐字段结论
-
-| 表 | 字段 | 审核结果 | 主要依据 | 问题 ID | 处理结果 |
-|---|---|---|---|---|---|
-
-表末尾写明字段覆盖率计算过程；不得只写百分比。
-
-### 6.1 高风险字段处置
-
-| 表 | 字段 | 风险模式 | 保留/改名/改约束/删除/阻塞 | 证据 | 理由 |
-|---|---|---|---|---|---|
-
-至少覆盖本次出现的 `last_*`、`current_*`、金额/合计、状态、request/operation ID、JSON 和冗余投影字段。没有出现某类字段时写“不涉及”。
-
-## 7. 关系、事实源与生命周期
-
-| 事实 | 权威来源 | 相邻表或投影 | 基数 | 当前状态归属 | 历史过程归属 | 终态与删除行为 |
-|---|---|---|---|---|---|---|
-
-## 8. 查询与索引
-
-| 查询编号 | 查询路径 | 索引结论 | 依据 | 剩余风险 |
+| 类别 | 对象或路径 | 结论 | 依据 | 剩余风险 |
 |---|---|---|---|---|
 
-| 索引 | 服务查询 | 保留/修改/删除 | 写入成本 | 依据 |
+至少覆盖本轮命中的关系/生命周期、查询/索引、事务/锁、幂等/恢复、不变量、迁移和实现一致性。
+
+## 5. Agent 与主 Agent 裁决
+
+| Agent | 输入摘要 | 原始输出摘要 | 发现 | 主 Agent 裁决 |
 |---|---|---|---|---|
 
-## 9. 事务、并发、幂等与对账
+未启动 Agent 时写明模式规则，不得为了填表额外启动。
 
-| 写入编号 | 事务与锁 | 幂等 | 未知结果恢复 | 对账不变量 | 结论 |
-|---|---|---|---|---|---|
+## 6. 最终结论
 
-## 10. 迁移、回滚与容量
-
-| 项目 | 方案 | 验证方法 | 失败处理 | 结论 |
-|---|---|---|---|---|
-
-## 11. 双 Agent 分歧与主 Agent 裁决
-
-| 问题 ID | Agent 结论 | 主 Agent 裁决 | 证据 | 处理结果 |
-|---|---|---|---|---|
-
-没有分歧时写“无”，但仍需列出两个 Agent 的完成状态和输入摘要。
-
-## 12. 通俗解释附录
-
-对每张保留或扩展的表分别回答：
-
-1. 这张表用一句话怎么解释；
-2. 现有表为什么不够；
-3. 为什么不是过度设计；
-4. 用一组具体数字说明记录如何变化；
-5. 它与最相似的表有什么区别；
-6. 最容易误解的字段是什么；
-7. 当前状态和历史过程分别保存在哪里。
-
-## 13. 最终门禁结论
-
-| 门禁 | 结果 | 证据 |
-|---|---|---|
-| P0=0 | |
-| P1=0 | |
-| 表覆盖率 100% | |
-| 字段覆盖率 100% | |
-| 查询与索引均有结论 | |
-| 敏感数据事务与对账完整 | |
-| 双 Agent 完成 | |
-| 双 Agent 原始输出可核验 | |
-| 主 Agent 完成全部裁决 | |
-| 冷读通过 | |
-| 无阻塞 ASSUMPTION | |
-
-最终状态只能是：`passed / failed / blocked / stale / independent_review_unavailable / not_applicable`。
-
-只有本节所有强制门禁均通过时才能写 `passed`。报告必须记录 reviewed-at、设计摘要、代码基线、证据包路径和报告路径；任一摘要变化后旧结论自动变为 `stale`。
-
-## 14. coding_readiness
-
-| 结论 | 值 |
+| 项目 | 结果 |
 |---|---|
-| database-review status | passed/failed/blocked/stale/independent_review_unavailable/not_applicable |
+| P0/P1/P2 | N/N/N |
+| 最小化门禁 | 通过/未通过 |
+| 当前范围覆盖 | 分子/分母 |
+| database-review status | scope_passed/passed/failed/blocked/needs_delta/needs_full/stale/independent_review_unavailable/not_applicable |
 | coding_readiness | ready/conditional/not_ready |
-| 允许的实现范围 | |
-| 禁止的生产动作 | |
+| 允许范围 | |
 | 外部门禁 | |
 
-`conditional` 必须同时证明 complete-baseline 无未解决 P0、delta 确定性预检通过、变更边界闭合；它不是 passed，禁止写 passed marker。
+`scope_passed` 只证明封闭变更范围；`passed` 才代表完整认证。输入摘要变化后相关结论变为 stale。
