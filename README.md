@@ -29,9 +29,28 @@ SwitchAI 现有接入保持不变。已验证真实安装、浏览器缺陷/修�
 结果见 [验证报告](docs/reports/2026-11-13-playwright-independent.md)，来源和边界见
 [适配盘点](docs/adaptation-inventory.md)。未验证模型自主选择或公司 TP/内网业务验收。
 
+[claude-mem 候选 1.0.0](components/claude-mem/README.md) 状态为 **`local-verification-candidate`**。
+`redistributionReady=false`：第三方完整源码配套尚未交付，未宣称完成公开二进制发行；本地功能验证与公开再分发状态分开记录。
+固定上游 `15.17.0`、Node `24.11.1`、Bun `1.4.4`，目标为 Windows 10 / Windows Server 2016 及以上 x64，SQLite/FTS，无需 Python。
+显式执行 `install/check/enable`；安装不启动服务/采集，普通启用为两端登记 `vault-memory` Skill 与 `vault_memory` MCP 以手动保存/检索。
+仅 Claude 显式 `enable -Capture` 才注册项目采集 Hooks；Codex 本版不提供自动采集。
+显式采集启动 observer 时可在 Git 外写入私有 `observer.env` 供上游查找凭据；reader 不生成或加载该文件。
+凭据写入前限制 Windows DACL，确认停止后清理受管凭据文件，保留记忆数据库。
+复用上游 loopback Viewer，私有记忆存于 Git 外，卸载保留数据；不迁移 SwitchAI 或其他原生安装的数据。
+reader 升级 observer 时，在生命周期锁与身份核验下复用原端口并创建新 worker generation；
+端口被占则返回 `EADDRINUSE`，不随机改端口或接管其他监听者。补丁后的两项真实本机测试已通过。
+新 ZIP 的独立构建哈希一致，完整归档校验及实际解压包的七项安装/记忆旅程均通过；
+同一真实 MCP 连接跨模式升级也通过。采集回放和原生发现的批次与限制单独记录，不宣称真实模型或内网验收通过。
+完整证据见 [验证报告](docs/reports/2026-11-13-claude-mem-independent.md)，
+新归档身份与校验值以 [候选记录](registry/releases/claude-mem/1.0.0/windows-x64.json) 为准。二进制未上传。
+
 离线组件目录为 [components.json](registry/components.json)。已发行 ZIP 的版本、来源、大小和 SHA256
 记录在 `registry/releases/`，Playwright 见 [1.0.0 发行记录](registry/releases/playwright-test/1.0.0/windows-x64.json)。
 ZIP 单独分发，目前仅在本机保存，未上传二进制；不提供虚构的下载地址。
+
+源码台账与离线发行分开：已收录双端 `vault-memory` 源码，实际发行状态以组件目录和不可变发行记录为准。
+Impeccable 与 Playwright 保持已有发行状态，claude-mem 按本地验证候选管理。
+Paperclip 和 Hermes 仅是 [盘点](docs/adaptation-inventory.md) 中的宿主参考，不属于 Vault 收录内容。
 
 ## 目录约定
 
@@ -47,6 +66,9 @@ ZIP 单独分发，目前仅在本机保存，未上传二进制；不提供虚�
 
 ## 当前快照
 
+- [Claude vault-memory 1.0.0](claude-code/skills/vault-memory/1.0.0/SKILL.md) 与
+  [Codex 同名 Skill](codex/skills/vault-memory/1.0.0/SKILL.md)：手动记忆接入源码候选；具体版本的功能与归档证据见报告。
+  Claude 采集须单独授权，Codex 自动采集不在本版范围。
 - [Claude vault-playwright 1.0.0](claude-code/skills/vault-playwright/1.0.0/SKILL.md) 与
   [Codex 同名 Skill](codex/skills/vault-playwright/1.0.0/SKILL.md)：镜像源码依赖上述独立组件；
   安装、浏览器重放及双端原生发现已有本地验证，模型自主选择与实际业务验收另行验证。

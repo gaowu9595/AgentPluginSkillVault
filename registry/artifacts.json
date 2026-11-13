@@ -10,6 +10,42 @@
   },
   "artifacts": [
     {
+      "id": "claude-skill:vault-memory",
+      "type": "claude-code-skill",
+      "name": "vault-memory",
+      "path": "claude-code/skills/vault-memory/1.0.0/",
+      "vaultVersion": "1.0.0",
+      "upstreamVersion": "15.17.0",
+      "versionSource": "SKILL.md metadata.version; upstreamVersion identifies claude-mem, not the Vault-authored Skill.",
+      "snapshotDate": "2026-11-13",
+      "source": "components/claude-mem/UPSTREAM.json",
+      "componentId": "claude-mem",
+      "runtimeDependencies": [
+        "Windows x64; existing Claude Code client",
+        "Vault claude-mem 1.0.0: bundled Node 24.11.1 and Bun 1.4.4, sqlite-fts profile",
+        "Private project data outside Git; explicit Capture additionally needs a native Claude model connection"
+      ],
+      "notes": "Mirrors the Codex Skill source. Explicit install/check/enable. Project MCP vault_memory and .claude/skills/vault-memory support manual save/search. enable -Capture separately installs owned Claude Hooks; install/check do not submit model turns. Native model configuration is read through a restricted allowlist, not modified. No SwitchAI runtime or memory migration. Binary distribution and verification are recorded separately."
+    },
+    {
+      "id": "codex-skill:vault-memory",
+      "type": "codex-skill",
+      "name": "vault-memory",
+      "path": "codex/skills/vault-memory/1.0.0/",
+      "vaultVersion": "1.0.0",
+      "upstreamVersion": "15.17.0",
+      "versionSource": "SKILL.md metadata.version; upstreamVersion identifies claude-mem, not the Vault-authored Skill.",
+      "snapshotDate": "2026-11-13",
+      "source": "components/claude-mem/UPSTREAM.json",
+      "componentId": "claude-mem",
+      "runtimeDependencies": [
+        "Windows x64; existing Codex client",
+        "Vault claude-mem 1.0.0: bundled Node 24.11.1 and Bun 1.4.4, sqlite-fts profile",
+        "Private project data outside Git; manual save and retrieval do not require a model connection"
+      ],
+      "notes": "Mirrors the Claude Skill source. Project .agents/skills/vault-memory and .codex/config.toml MCP vault_memory. Manual save/search only in this release; upstream Codex Hooks exist but native registration/trust/event delivery are unverified and are not installed. No native model/account/global config changes, automatic capture or SwitchAI dependency."
+    },
+    {
       "id": "claude-skill:vault-playwright",
       "type": "claude-code-skill",
       "name": "vault-playwright",

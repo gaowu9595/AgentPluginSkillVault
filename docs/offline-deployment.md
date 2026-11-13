@@ -50,6 +50,63 @@ SwitchAI 现有组件、原生接入和 `.switchai-tests` 保持不变，不读�
 `claude_agent_sdk`、`mcp`、`pywin32` 库，不导入 SwitchAI 源码。Python 及这些 SDK 是开发验证依赖，
 独立目标包无需 Python；用户运行管理器和测试使用系统 PowerShell 与包内 Node。
 
+## claude-mem 独立组件：本地验证候选
+
+[组件说明](../components/claude-mem/README.md) 定义 `1.0.0` 候选，目标为 Windows 10 / Windows Server 2016 及以上 x64，
+固定 claude-mem `15.17.0`、Node `24.11.1`、Bun `1.4.4` 和 SQLite/FTS。
+Worker/MCP 功能和双端原生初始化已有本地验证历史；端口补丁后的新归档须单独关联验证证据。
+状态为 `local-verification-candidate`、`redistributionReady=false`：第三方完整源码配套尚未交付，未宣称完成公开二进制发行。
+本地功能验证与公开再分发状态分开记录。
+新归档版本、字节数、ZIP 与 manifest 校验值统一见候选 [归档记录](../registry/releases/claude-mem/1.0.0/windows-x64.json)，
+不要将旧候选的校验值用于新包。
+ZIP 仅存本机，无已上传的下载地址；源码提交不代表二进制或源码配套已上传。
+此候选不改变前两包的已验证状态；最低系统要求不代表所有系统版本均已实测。
+安装不启用 Hooks、不启动服务、不调用模型；包内提供 Node/Bun，目标无需 Python 或 npm 下载。
+
+评估可信来源的候选 ZIP 时，先按随包发行记录（sidecar）核对校验值，再从解压目录按项目执行：
+
+```powershell
+.\manage.ps1 -Action install -Client claude -Project 'D:\Codes\my-project'
+.\manage.ps1 -Action check -Client claude -Project 'D:\Codes\my-project'
+.\manage.ps1 -Action enable -Client claude -Project 'D:\Codes\my-project'
+.\manage.ps1 -Action viewer -Client claude -Project 'D:\Codes\my-project'
+```
+
+Codex 改用 `-Client codex`；默认两端均为手动保存/检索，项目 Skill 为 `vault-memory`
+（`.claude/skills` 或 `.agents/skills`），项目 MCP 为 `vault_memory`（`.mcp.json` 或 `.codex/config.toml`）。
+不改全局账号、模型或权限设置，原生信任和审批仍须遵循客户端要求。
+启用后，在项目目录开启新原生会话：Claude Code 使用 `/vault-memory`，Codex 使用 `$vault-memory`，
+先检索再要求保存有来源的项目事实，保存成功以工具返回为准；新会话可再次检索确认。
+在浏览器打开 `viewer` 返回的 `viewerUrl`，查看本项目记录。
+仅 Claude 明确 `enable -Capture` 才登记项目自动采集 Hooks；Codex 本版不提供自动采集。
+自动采集需已有 Claude 模型连接，可能消耗额度；手动记忆、查看与自检不需观察模型。
+
+`configure -ClaudeHome <已有Claude配置目录绝对路径>` 只选择已有连接来源，先停用该项目两端；
+不接受密钥 CLI 参数，不重写原生模型设置，不执行凭据 helper。显式采集启动 observer 时，
+可在 Git 外的 `<项目私有数据目录>/native-empty/observer.env` 写入允许的连接环境字段，供上游查找凭据；
+该文件可能含凭据，不随包分发，reader 不生成或加载它。
+写入前设置并核验 Windows 私有 DACL，仅允许当前用户与 SYSTEM；权限不满足时拒绝写入。
+确认拥有的 worker 停止后清理受管 `observer.env` 及其临时副本，保留数据库。
+`start` 默认启动 reader（observer 关闭），
+`viewer` 返回上游 loopback URL，不另做 UI；若已存在观察 worker，查看可复用而不强制关闭它。
+reader 升级 observer 在完整生命周期锁与身份核验下复用原端口、创建新 generation；
+端口被占则返回 `EADDRINUSE`，不随机回退或接管，既有 MCP 固定 URL 的端口不会因升级主动变更。
+`check` 不提交模型 turn。`stop` 仅停止拥有的 worker，仍启用的 Hooks/MCP 之后可能重启；
+需停用能力时执行 `disable`，它使旧 Hooks 不能继续启动采集。
+
+安装可选 `-RuntimeRoot` 共享缓存基目录，默认版本目录为
+`%LOCALAPPDATA%/AgentPluginSkillVault/components/claude-mem/1.0.0`；
+`-DataRoot` 可选私有基目录，默认为 `%LOCALAPPDATA%/AgentPluginSkillVault/data/claude-mem`，
+按项目 key 隔离，必须位于 Git、项目与运行包之外。状态位于
+`.agent-vault/claude-mem/<client>/project.json`。卸载保留记忆和共享缓存，不导入旧数据库。
+无 SwitchAI 源码依赖、配置读取或私有数据迁移，原有宿主接入不变。
+
+实际检查范围与限制见 [验证报告](reports/2026-11-13-claude-mem-independent.md)。补丁后的两项真实本机测试已通过，
+分别验证同端口新 generation、端口占用时拒绝且不回退/接管。补丁前 Runtime 27 项通过及旧候选的构建、
+管理、原生发现、安装 smoke、采集和重建记录仍有效，但不能合并为补丁后的一次全量结果或新包验证完成结论。
+这些本地结果不代表真实上游模型连接或实际业务验收。Impeccable、Playwright 保持已有发行状态；
+claude-mem 仍是本地验证候选，Paperclip/Hermes 仅为宿主参考。
+
 ## 能离线保存的内容
 
 | 类型 | 可持久化内容 | 不能只靠本仓库解决的内容 |

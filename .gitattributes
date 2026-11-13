@@ -12,3 +12,11 @@
 /claude-code/skills/vault-playwright/1.0.0/LICENSE -text
 /codex/skills/vault-playwright/1.0.0/LICENSE -text
 /examples/playwright-regression/** text eol=lf
+/components/claude-mem/vendor/** -text
+/components/claude-mem/LICENSE -text
+/components/claude-mem/NOTICE -text
+/components/claude-mem/licenses/** -text
+/claude-code/skills/vault-memory/** text eol=lf
+/codex/skills/vault-memory/** text eol=lf
+/claude-code/skills/vault-memory/1.0.0/LICENSE -text
+/codex/skills/vault-memory/1.0.0/LICENSE -text

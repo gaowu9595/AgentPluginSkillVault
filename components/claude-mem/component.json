@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "componentId": "claude-mem",
+  "componentVersion": "1.0.0",
+  "platform": "windows-x64",
+  "profile": "sqlite-fts",
+  "upstream": {
+    "repository": "https://github.com/thedotmack/claude-mem",
+    "version": "15.17.0",
+    "commit": "6b779c06796138aeb4b0ee2fa7dbd25912e4f7fb",
+    "license": "Apache-2.0",
+    "noticeSha256": "35003c303ee484c77872fd45eb5d590ce679d1ae7ac5bb672d33069cca66685b"
+  },
+  "engine": {
+    "name": "Node.js",
+    "version": "24.11.1",
+    "sha256": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf"
+  },
+  "dependencies": {
+    "bun": {
+      "version": "1.4.4",
+      "sha256": "cb1d8e6564e655e49d30cead359750a1cbbd12f42651caa4b62244d7bd93c244",
+      "source": "https://registry.npmjs.org/@oven/bun-windows-x64/-/bun-windows-x64-1.4.4.tgz"
+    },
+    "smol-toml": {
+      "version": "1.6.0",
+      "license": "BSD-3-Clause",
+      "source": "https://registry.npmjs.org/smol-toml/-/smol-toml-1.6.0.tgz",
+      "archiveSha256": "b65b5aecf4514af6f49599aef9668b72922c331d8735f8457f16be7eaa8f90f6",
+      "moduleSha256": "db5bf42d36ba6c950c9bd651026be9a771e55a2c82f8b64866de8928d04e1fd1",
+      "licenseSha256": "fa5659948374d4f555594f47f6da073b40dc503e921aeeece30df4362b3051a5"
+    }
+  },
+  "dependencyLockSha256": "b35cecc681477acbd3dbdd6c296a0518a95059e03954377ff1580ebdf9e647db",
+  "runtimeArchive": {
+    "filename": "claude-memory-component.zip",
+    "sha256": "9e407ea2c0b907bb40c0e77513de7b5fc33a1421596fbdd6cb9c1db0c826495c",
+    "bytes": 312976919
+  },
+  "sourceSnapshots": {
+    "claude": "claude-code/skills/vault-memory/1.0.0",
+    "codex": "codex/skills/vault-memory/1.0.0"
+  }
+}

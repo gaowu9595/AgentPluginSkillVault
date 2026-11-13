@@ -29,6 +29,22 @@
           "record": "registry/releases/playwright-test/1.0.0/windows-x64.json"
         }
       ]
+    },
+    {
+      "id": "claude-mem",
+      "name": "claude-mem independent offline component",
+      "recommendedVersion": "1.0.0",
+      "distribution": "local-only",
+      "releaseStatus": "local-verification-candidate",
+      "redistributionReady": false,
+      "definition": "components/claude-mem/component.json",
+      "releases": [
+        {
+          "componentVersion": "1.0.0",
+          "platform": "windows-x64",
+          "record": "registry/releases/claude-mem/1.0.0/windows-x64.json"
+        }
+      ]
     }
   ]
 }

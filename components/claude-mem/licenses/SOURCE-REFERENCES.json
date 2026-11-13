@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "evidenceDate": "2026-11-13",
+  "scope": "License packaging evidence; not legal clearance, complete corresponding source, a source offer, or proof of relinking.",
+  "input": {
+    "filename": "claude-memory-component.zip",
+    "bytes": 312976919,
+    "sha256": "9e407ea2c0b907bb40c0e77513de7b5fc33a1421596fbdd6cb9c1db0c826495c",
+    "upstreamVersion": "15.17.0",
+    "upstreamCommit": "6b779c06796138aeb4b0ee2fa7dbd25912e4f7fb",
+    "publicNpmArchiveSha256": "099f2d2e360aa6fbc5e2da08d3905da936d114d8fd5f701edf38370ca5062bf8"
+  },
+  "licenseTexts": [
+    {
+      "file": "NOTICE",
+      "source": "https://registry.npmjs.org/claude-mem/-/claude-mem-15.17.0.tgz!package/NOTICE",
+      "sourceKind": "verified-prepared-public-package",
+      "sha256": "35003c303ee484c77872fd45eb5d590ce679d1ae7ac5bb672d33069cca66685b"
+    },
+    {
+      "file": "licenses/LGPL-2.0.txt",
+      "source": "https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24"
+    },
+    {
+      "file": "licenses/LGPL-2.1.txt",
+      "source": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95"
+    },
+    {
+      "file": "licenses/LGPL-3.0.txt",
+      "source": "https://www.gnu.org/licenses/lgpl-3.0.txt",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "file": "licenses/GPL-3.0.txt",
+      "source": "https://www.gnu.org/licenses/gpl-3.0.txt",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "file": "licenses/GPL-2.0.txt",
+      "source": "https://raw.githubusercontent.com/spdx/license-list-data/v3.26.0/text/GPL-2.0-only.txt",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3"
+    },
+    {
+      "file": "licenses/MPL-1.1.txt",
+      "source": "https://raw.githubusercontent.com/spdx/license-list-data/v3.26.0/text/MPL-1.1.txt",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795"
+    },
+    {
+      "file": "licenses/WebKit-JavaScriptCore-COPYING.LIB",
+      "source": "https://raw.githubusercontent.com/oven-sh/WebKit/d6375c72affe0f70222cdcb45012b10f0bf3a9d5/Source/JavaScriptCore/COPYING.LIB",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "5094ecb9c9dcd0eadc34f3c11511d9b5535063032bc150164ecd1a5d5a445547"
+    },
+    {
+      "file": "licenses/libvips-8.18.7-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/libvips/libvips/24ad4d042940e6bf99a68871ba886ca8847c9c82/LICENSE",
+      "sourceKind": "public-fetch-http-200",
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551"
+    }
+  ],
+  "sources": [
+    {
+      "id": "bun",
+      "version": "1.4.4",
+      "tag": "bun-v1.4.4",
+      "commit": "38afee6c84fcf48c0edb2466aa4b27d287a59c30",
+      "verifiedReference": "https://api.github.com/repos/oven-sh/bun/git/ref/tags/bun-v1.4.4",
+      "sourceArchive": {
+        "url": "https://codeload.github.com/oven-sh/bun/tar.gz/38afee6c84fcf48c0edb2466aa4b27d287a59c30",
+        "downloaded": false,
+        "bytes": null,
+        "sha256": null
+      },
+      "buildGuide": "https://github.com/oven-sh/bun/blob/38afee6c84fcf48c0edb2466aa4b27d287a59c30/CONTRIBUTING.md",
+      "packageScripts": [
+        "build:local",
+        "build:release:local"
+      ],
+      "binaryCorrespondence": "Version/tag and recipe verified; exact binary reproduction, full source/relink delivery and recipient replacement are unverified."
+    },
+    {
+      "id": "bun-webkit",
+      "commit": "d6375c72affe0f70222cdcb45012b10f0bf3a9d5",
+      "verifiedReference": "https://raw.githubusercontent.com/oven-sh/bun/38afee6c84fcf48c0edb2466aa4b27d287a59c30/scripts/build/deps/webkit.ts",
+      "referenceSha256": "e801ac2b2c0b83767a10e4bf673addda60ff1c4e64d1246c0e442ce22b3c5059",
+      "sourceArchive": {
+        "url": "https://codeload.github.com/oven-sh/WebKit/tar.gz/d6375c72affe0f70222cdcb45012b10f0bf3a9d5",
+        "downloaded": false,
+        "bytes": null,
+        "sha256": null
+      },
+      "linkage": "Bun's pinned license identifies static JavaScriptCore/WebKit linkage; a replacement DLL alone is insufficient."
+    },
+    {
+      "id": "sharp",
+      "version": "0.35.5",
+      "tag": "v0.35.5",
+      "tagObject": "9aac0c92b97e11d4e7d189ba81046271826118cf",
+      "commit": "51a990faa26ade5586a4934ac9673c98d8893326",
+      "verifiedReference": "https://api.github.com/repos/lovell/sharp/git/tags/9aac0c92b97e11d4e7d189ba81046271826118cf",
+      "sourceArchive": {
+        "url": "https://codeload.github.com/lovell/sharp/tar.gz/51a990faa26ade5586a4934ac9673c98d8893326",
+        "downloaded": false,
+        "bytes": null,
+        "sha256": null
+      },
+      "buildEntry": "https://github.com/lovell/sharp/blob/51a990faa26ade5586a4934ac9673c98d8893326/install/build.js",
+      "binaryCorrespondence": "Source version verified; exact prebuilt DLL/WASM supplier patches, flags and reproduction are unverified."
+    },
+    {
+      "id": "libvips",
+      "version": "8.18.7",
+      "tag": "v8.18.7",
+      "commit": "24ad4d042940e6bf99a68871ba886ca8847c9c82",
+      "verifiedReference": "https://api.github.com/repos/libvips/libvips/git/ref/tags/v8.18.7",
+      "sourceArchive": {
+        "url": "https://codeload.github.com/libvips/libvips/tar.gz/24ad4d042940e6bf99a68871ba886ca8847c9c82",
+        "downloaded": false,
+        "bytes": null,
+        "sha256": null
+      },
+      "buildEntry": "https://github.com/libvips/libvips/blob/24ad4d042940e6bf99a68871ba886ca8847c9c82/meson.build",
+      "binaryCorrespondence": "Direct upstream version verified; not established as the complete patched/transitive source for the prebuilt Sharp libraries."
+    }
+  ],
+  "binaryInventories": [
+    {
+      "member": "plugin/node_modules/@img/sharp-win32-x64/versions.json",
+      "sha256": "e2611d5d854815a8b33c8a3d2ec649511a9596ccf16844e8eae7cf81e79881c4",
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3"
+      }
+    },
+    {
+      "member": "plugin/node_modules/@img/sharp-wasm32/versions.json",
+      "sha256": "36e4e862aac3ac2dd037ff116627e0106ac67688b368282981962b920d8221d5",
+      "versions": {
+        "aom": "3.15.1",
+        "cgif": "0.5.4",
+        "emscripten": "6.0.10",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "glib": "2.90.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "png": "1.6.58",
+        "resvg": "0.48.1",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "zlib-ng": "2.3.3"
+      }
+    }
+  ],
+  "failedLookups": [
+    {
+      "url": "https://api.github.com/repos/lovell/sharp-libvips/git/ref/tags/v8.18.7",
+      "httpStatus": 404,
+      "implication": "Do not substitute the older v8.16.1 source/build release."
+    }
+  ],
+  "offlineSourceCompanion": {
+    "assembled": false,
+    "files": [],
+    "instruction": "Collect exact source, supplier patches, covered dependency sources and required relink materials separately; record each actual file's bytes/SHA256 before distribution. Source archive references above are not a delivered source companion."
+  },
+  "openGaps": [
+    "Complete third-party attribution and licensing inventory for code inlined into worker/MCP/UI bundles, including Claude Agent SDK.",
+    "Applicable corresponding-source/relink delivery route and all materials for statically linked Bun/JSC.",
+    "Exact Sharp prebuilt Windows/WASM supplier recipe, patches, transitive sources and build tools.",
+    "Actual replacement/relink execution and acceptance by the independent component integrity/selection workflow.",
+    "Actual immutable source companion archives, checksums and offline delivery."
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "componentId": "claude-mem",
+  "componentVersion": "1.0.0",
+  "runtimeArchive": {
+    "filename": "claude-memory-component.zip",
+    "sha256": "9e407ea2c0b907bb40c0e77513de7b5fc33a1421596fbdd6cb9c1db0c826495c",
+    "bytes": 312976919
+  },
+  "upstream": {
+    "repository": "https://github.com/thedotmack/claude-mem",
+    "version": "15.17.0",
+    "commit": "6b779c06796138aeb4b0ee2fa7dbd25912e4f7fb",
+    "license": "Apache-2.0",
+    "noticeSha256": "35003c303ee484c77872fd45eb5d590ce679d1ae7ac5bb672d33069cca66685b"
+  },
+  "originalPackageMetadata": {
+    "format": 1,
+    "version": "15.17.0",
+    "platform": "windows-x64",
+    "profile": "sqlite-fts",
+    "sha256": "9e407ea2c0b907bb40c0e77513de7b5fc33a1421596fbdd6cb9c1db0c826495c",
+    "bytes": 312976919,
+    "upstream": {
+      "repository": "https://github.com/thedotmack/claude-mem",
+      "commit": "6b779c06796138aeb4b0ee2fa7dbd25912e4f7fb",
+      "nodeVersion": "24.11.1",
+      "bunVersion": "1.4.4",
+      "artifacts": {
+        "claude-mem-15.17.0": {
+          "url": "https://registry.npmjs.org/claude-mem/-/claude-mem-15.17.0.tgz",
+          "integrity": "sha512-fudqrmuttL65Shg9PlN+GitsYW20iO0Y3lnbte+vIwI8omEU9DtjUx1+x+DlQc5OuZ8GgkY8i6R5ngzWNyT1qw==",
+          "sha256": "099f2d2e360aa6fbc5e2da08d3905da936d114d8fd5f701edf38370ca5062bf8"
+        },
+        "bun-windows-x64-1.4.4": {
+          "url": "https://registry.npmjs.org/@oven/bun-windows-x64/-/bun-windows-x64-1.4.4.tgz",
+          "integrity": "sha512-a3LNctBVO8PjePsFZfwDleF2JXYf2BfQ1u/PLRnBDLnC2Riml+4+LgJpKj4xRGhB92KweGyQI5PXaTkP9qypMQ==",
+          "sha256": "2fa598bc6c8d20440929f9c18b6363c15323274dc0fc5031e33ea209e687121c"
+        }
+      },
+      "profile": "sqlite-fts",
+      "pluginVersion": "15.17.0",
+      "adaptation": "Remove Setup version-check and SessionStart ensure-launcher installation hooks; retain all collection and retrieval hooks.",
+      "dependencyLockSha256": "b35cecc681477acbd3dbdd6c296a0518a95059e03954377ff1580ebdf9e647db"
+    }
+  },
+  "licensingEvidence": {
+    "scope": "Evidence for the exact prepared archive, not a claim about other upstream releases or third-party dependencies.",
+    "licenseFile": "LICENSES/claude-mem.txt",
+    "licenseFileSha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "observedLicenseText": "Apache License, Version 2.0, January 2004",
+    "pluginManifest": "plugin/.claude-plugin/plugin.json",
+    "pluginManifestSha256": "980a4d966a21be195b964bf9c7eca242b01aa570b4c7c54648aa363374cc5bfe",
+    "pluginManifestLicense": "Apache-2.0",
+    "upstreamNoticeMissingFromPreparedArchive": true,
+    "supplementalNoticeSha256": "35003c303ee484c77872fd45eb5d590ce679d1ae7ac5bb672d33069cca66685b",
+    "supplementalComponentSources": [
+      "NOTICE",
+      "THIRD-PARTY.md",
+      "licenses/"
+    ],
+    "note": "The archive license text and plugin manifest both declare Apache-2.0. Supplemental NOTICE and third-party license/source/relink materials are component-local sources collected recursively. Bun and sharp include LGPL obligations; preserving these materials and provenance does not establish legal completeness for redistribution."
+  },
+  "packaging": {
+    "metadataSource": "SwitchAI app/assets/claude-memory-component.json (read-only provenance snapshot; not a build dependency)",
+    "runtimeIncludes": [
+      "bin/node.exe",
+      "bin/bun.exe",
+      "plugin/",
+      "LICENSES/"
+    ],
+    "omittedRuntimePaths": [
+      "bin/claude-mem.exe",
+      "manifest.json"
+    ],
+    "preservedUpstreamFile": "RUNTIME-UPSTREAM.json",
+    "zip": {
+      "compression": "DEFLATE",
+      "compressionLevel": 6,
+      "memberOrder": "sorted by path",
+      "memberTimestamp": "2020-01-01T00:00:00"
+    },
+    "changes": [
+      "Verify the complete pinned archive and every original manifest member, including the omitted host launcher, before selecting bytes.",
+      "Preserve selected runtime bytes and the original UPSTREAM.json exactly as RUNTIME-UPSTREAM.json.",
+      "Omit bin/claude-mem.exe, the previous host launcher. Preserve plugin assets as runtime source; copying them does not enable native Hooks or prove client compatibility.",
+      "Package the separate Vault adapter and identical Claude/Codex vault-memory Skill snapshots; do not import SwitchAI source or migrate existing memory data.",
+      "Require repository-relative contained Skill source paths; reject linked source paths and obvious private/user data filenames.",
+      "Require supplemental NOTICE, THIRD-PARTY.md, source references and all component-local license texts; verify NOTICE against the pinned upstream SHA256 before packaging. This is an attribution presence/integrity guard, not legal clearance.",
+      "Reject common backups of private filenames, Windows device/invalid member names, and component sources in reserved bin/, plugin/ or skill/ namespaces.",
+      "Hash and copy runtime streams in bounded chunks; stage output beside its destination before replacing files.",
+      "Guard all recorded release identity and dependency fields; changed payload bytes at an existing version require a component version bump."
+    ]
+  },
+  "vaultComponentSourceLicense": {
+    "license": "Apache-2.0",
+    "copyright": "Copyright 2026 AgentPluginSkillVault contributors",
+    "outputPath": "LICENSE",
+    "scope": "Vault-authored builder, lifecycle adapters and both mirrored vault-memory Skill files use this component-level license; no per-Skill LICENSE file is required. Upstream runtime and vendored code retain their own licenses."
+  }
+}

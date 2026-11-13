@@ -2,10 +2,18 @@
 
 ## 2026-11-13
 
+- claude-mem 独立 `1.0.0` 保持 `local-verification-candidate`，`redistributionReady=false`：第三方完整源码配套尚未交付，未宣称完成公开二进制发行。最低 Windows 10 / Windows Server 2016（x64），上游 `15.17.0`、Node `24.11.1`、Bun `1.4.4`、SQLite/FTS，目标无需 Python；完整版本证据见[报告](reports/2026-11-13-claude-mem-independent.md)，不改变前两组件的已有结论。
+- 修复 reader 升级 observer 改变端口导致已有 MCP 固定 URL 失效的问题：完整生命周期锁与身份核验下复用原端口、创建新 worker generation；端口被占时以 `EADDRINUSE` 失败，不随机回退或接管占用者。补丁后的两项真实本机测试分别覆盖上述正常升级与冲突拒绝，均通过。
+- 分开记录验证批次：端口补丁前 Runtime 27 项通过，旧候选构建 31 通过/1 跳过、管理 68 通过/1 项符号链接权限跳过、registry 3 项及原生初始化 6 项通过；补丁后的两项测试独立执行，不合并为新源码的一次全量通过结果。
+- 前一候选真实 Worker/Viewer、MCP 保存/SQLite FTS 检索、数据保留、ACL/采集清理、实际解压包安装 smoke 及 Git 索引重建均保留为对应版本的真实证据；失败轮次和细节归报告维护，不沿用旧包的“最终验证完成”声明。未访问真实上游模型或业务服务。
+- 新端口补丁包已独立重建且哈希一致，完整归档校验与实际解压后的七项安装/记忆旅程通过，退出 0；同一真实 MCP 连接跨升级测试通过，七个适配文件与最终 ZIP 哈希一致。归档身份见[候选记录](../registry/releases/claude-mem/1.0.0/windows-x64.json)，证据与旧包分开。二进制未上传，源码提交不表示源码配套已上传。
+- 说明两端默认 `vault-memory` Skill / `vault_memory` MCP 手动记忆；安装不启用 Hooks/服务/模型，仅 Claude 明确 `enable -Capture` 才登记项目采集 Hooks，Codex 自动采集不在本版范围。`configure -ClaudeHome` 只选择现有原生连接允许字段，不收密钥 CLI 参数、不重写原生模型；`start` 默认 reader，`viewer` 复用上游 loopback 页面，`stop` 只停拥有的 worker，`disable` 阻止旧 Hooks 启动采集。
+- 补充显式采集的凭据边界：启动 observer 时可在 Git 外项目私有数据目录写入 `native-empty/observer.env`，供上游查找允许的连接字段，可能含凭据；写入前限制 DACL，确认 worker 停止后清理受管凭据文件与临时副本，保留数据库。reader 不生成或加载该文件，不随运行包分发。安装、手动保存/检索、查看与停用步骤分别说明。
+- 新增 [claude-mem 组件说明](../components/claude-mem/README.md)，同步首页、上下文、离线说明与 [适配盘点](adaptation-inventory.md)。共享不可变运行缓存与 Git 外项目私有数据分开，卸载保留记忆；不导入 SwitchAI 源码或迁移私有数据，现有宿主接入不变。源码收录与离线发行分开，claude-mem 保持候选；Impeccable、Playwright 的已有发行不变，Paperclip/Hermes 不计为 Vault 内容。
 - Playwright Test 独立组件 `1.0.0` 已通过本地验证并登记为本机发行/推荐版本。固定 Windows x64、Playwright `1.60.0`、Node `24.11.1`、Chromium `148.0.7778.96 / 1223`；版本缓存共享且不可变，项目用例/证据使用 `.agent-vault-tests`。
 - 明确显式 `install/check/enable` 与 `status/disable/uninstall` 的区别；Claude 安装三个原生 `vault-playwright-test-*` Agent，Codex 仅使用 Skill 角色参考资料，项目 MCP 均为 `vault_playwright`。不调用模型、不启用 Hooks、不修改全局设置；卸载保留用例、报告、私人文件和共享缓存。SwitchAI 既有测试及记忆接入不变。
 - 同步两项 `vault-playwright` Skill 台账及本机发行条目；结果见 [验证报告](reports/2026-11-13-playwright-independent.md) 和 [发行记录](../registry/releases/playwright-test/1.0.0/windows-x64.json)。ZIP `347895174` 字节，SHA256 `3a87840a7a0edebd2a157fdf7c0326eb48e8252212c930716df915dc5f545a94`，manifest SHA256 `ec064173472ff1ddbfc77af26128bde77b661d0c594718051f7adbce8ff11352`；Git 索引检出副本第二次构建哈希一致。二进制仅保存在本机，未上传。
-- 控制器最终验证：Node 34 通过；构建器 23 通过、1 项因 Windows 符号链接权限跳过；registry 3 通过。实际安装后的浏览器演示使用相同 7 条用例，缺陷版 5 通过/2 失败（TC04/TC05，退出码 1），修复版 7 通过（退出码 0）；每轮各 11 张截图、7 个视频、7 份 trace。上述为定向验证，不是全仓库测试结果。
+- Playwright 已记录的本地验证：Node 34 通过；构建器 23 通过、1 项因 Windows 符号链接权限跳过；registry 3 通过。实际安装后的浏览器演示使用相同 7 条用例，缺陷版 5 通过/2 失败（TC04/TC05，退出码 1），修复版 7 通过（退出码 0）；每轮各 11 张截图、7 个视频、7 份 trace。上述为定向验证，不是全仓库测试结果。
 - 原生夹具的管理、Claude 发现、MCP 协议、Codex 配置、Codex Skill 发现五项均通过；Claude `2.1.317`、Codex `0.167.0-alpha.4.1` 均发现 Impeccable，未提交模型 turn。夹具导入开发环境的 `claude_agent_sdk`、`mcp`、`pywin32` 库，不导入 SwitchAI 源码；目标独立组件不依赖 Python。未声明真实模型连接、模型自主选择或公司 TP/内网业务验收通过。
 - 落盘 AGENTS/CLAUDE 入口、组件边界、独立版本规则和当前上下文；源码台账与离线发行台账分开，组件/上游/引擎/协议/清单分别记录。
 - 新增 Impeccable 独立组件 1.0.0（Skill 4.8.2、引擎 0.1.22、Windows x64），双端原样快照、PowerShell 管理入口、可复现构建、逐文件校验及发行记录。安装不依赖 SwitchAI，不修改模型或 Hooks。
