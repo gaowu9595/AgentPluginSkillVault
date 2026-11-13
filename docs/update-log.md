@@ -2,6 +2,9 @@
 
 ## 2026-11-13
 
+- 落盘 AGENTS/CLAUDE 入口、组件边界、独立版本规则和当前上下文；源码台账与离线发行台账分开，组件/上游/引擎/协议/清单分别记录。
+- 新增 Impeccable 独立组件 1.0.0（Skill 4.8.2、引擎 0.1.22、Windows x64），双端原样快照、PowerShell 管理入口、可复现构建、逐文件校验及发行记录。安装不依赖 SwitchAI，不修改模型或 Hooks。
+- 新组件最终 19 项隔离测试通过且无跳过，包含双端真实引擎与本地 detector；两次构建哈希一致。限制与问题修复见 [本次验证](reports/2026-11-13-impeccable-component.md)。ZIP 单独保存在本机，未上传二进制，不宣称已接入 SwitchAI。
 - 添加 GitHub 仓库入口 `gaowu9595/AgentPluginSkillVault`，保留已有提交历史及 Claude Code/Codex 的 DesignSession 1.0.5 快照。
 - 明确仓库独立于 SwitchAI；当前快照仍需部署运行依赖，不宣称已完成通用离线安装组件的改造。大型运行包单独分发。
 - 修正 Claude 插件索引的当前版本，补充本地凭据、数据库及生成包的 Git 忽略规则。

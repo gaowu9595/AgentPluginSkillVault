@@ -6,6 +6,7 @@
 
 | Skill | 来源 | 用途 |
 | --- | --- | --- |
+| `impeccable/4.8.2` | 固定上游快照，镜像 Codex 侧 | UI 审查；完整 Windows 离线安装见 [组件说明](../../components/impeccable/README.md) |
 | `browser-proxy-access` | `codex/skills/browser-proxy-access/` | 通过浏览器/Ghelper 代理节点给 shell 网络命令提供代理访问 |
 | `doc` | `codex/skills/doc/` | 读写和渲染校验 `.docx` 文档 |
 | `spreadsheet` | `codex/skills/spreadsheet/` | 创建、编辑、分析和格式化 `.xlsx`/`.csv`/`.tsv` |

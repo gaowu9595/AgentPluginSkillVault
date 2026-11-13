@@ -1,7 +1,12 @@
 # Inventory
 
+源码快照与完整运行包分别管理。离线发行版本见
+[组件台账](registry/components.json)，规则见[版本管理](docs/component-versioning.md)。
+
 | Area | Name | Version | Path | Source | Notes |
 | --- | --- | --- | --- | --- | --- |
+| Claude Code skill | impeccable | 4.8.2 | `claude-code/skills/impeccable/4.8.2/` | pbakaus/impeccable @ b4bff1626c344067788c2679f048a20057c7cc5a | Apache-2.0; Windows x64 engine 0.1.22 in Vault offline component 1.0.0 |
+| Codex skill | impeccable | 4.8.2 | `codex/skills/impeccable/4.8.2/` | Same upstream snapshot | Mirrors Claude assets; native client discovery requires a new session |
 | Claude Code skill | browser-proxy-access | 1.0.0 | `claude-code/skills/browser-proxy-access/` | `codex/skills/browser-proxy-access/` | Mirrors Codex skill snapshot for Claude Code-side review/deployment |
 | Claude Code skill | doc | snapshot-20260627 | `claude-code/skills/doc/` | `codex/skills/doc/` | Mirrors Codex `.docx` skill snapshot |
 | Claude Code skill | spreadsheet | snapshot-20260627 | `claude-code/skills/spreadsheet/` | `codex/skills/spreadsheet/` | Mirrors Codex `.xlsx`/`.csv`/`.tsv` skill snapshot |

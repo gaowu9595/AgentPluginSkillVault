@@ -1,0 +1,6 @@
+# Preserve upstream snapshots byte-for-byte, including their original whitespace.
+/claude-code/skills/impeccable/** -text
+/codex/skills/impeccable/** -text
+
+# These files enter deterministic component archives on Windows and other hosts.
+/components/** text eol=lf

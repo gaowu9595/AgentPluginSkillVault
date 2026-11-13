@@ -4,10 +4,23 @@
 
 这个仓库用于持久化保存自己开发或转换过的 Agent 插件、Skill 和转换资料，覆盖 Claude Code 与 Codex 两套形态。
 
-本仓库独立于 SwitchAI 维护，不依赖其源码或安装目录。当前主要保存源码与配置快照，
+本仓库独立于 SwitchAI 维护，不依赖其源码或安装目录。已有条目以源码和配置快照为主，
 不代表所有能力都已具备完整离线运行环境；部署前须按
 [离线部署说明](docs/offline-deployment.md)准备依赖并验证目标客户端兼容性。
 大型离线运行包单独分发，Git 保留对应的构建资料、版本记录及许可证。
+
+AI 终端从 [AGENTS.md](AGENTS.md) 开始；当前进展见
+[项目上下文](docs/project-context.md)。组件边界和升级要求分别见
+[交付约束](docs/component-rules.md)与[版本管理](docs/component-versioning.md)。
+
+## 离线组件
+
+首个完整包为 [Impeccable 1.0.0](components/impeccable/README.md)：上游 Skill 4.8.2，
+Windows x64 引擎 0.1.22。支持独立项目/用户范围安装、状态、自检及保留个人文件的卸载。
+安装不改模型、MCP 或 Hooks；不需要 SwitchAI、Node 或 Python。
+
+离线版本目录为 [components.json](registry/components.json)，每个 ZIP 的版本、来源、
+大小和 SHA256 记录在 `registry/releases/`。ZIP 单独分发；当前不提供虚构的下载地址。
 
 ## 目录约定
 

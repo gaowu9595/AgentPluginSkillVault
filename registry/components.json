@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-13",
+  "components": [
+    {
+      "id": "impeccable",
+      "name": "Impeccable UI review",
+      "recommendedVersion": "1.0.0",
+      "distribution": "local-only",
+      "definition": "components/impeccable/component.json",
+      "releases": [
+        {
+          "componentVersion": "1.0.0",
+          "platform": "windows-x64",
+          "record": "registry/releases/impeccable/1.0.0/windows-x64.json"
+        }
+      ]
+    }
+  ]
+}

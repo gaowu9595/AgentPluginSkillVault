@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-10-10",
+  "updatedAt": "2026-11-13",
   "versioningPolicy": {
     "vaultVersion": "Version used by this repository for change tracking and offline deployment.",
     "upstreamVersion": "Version declared by the original artifact when one exists.",
@@ -9,6 +9,32 @@
     "crossClientSyncPolicy": "When any skill, plugin, or MCP artifact is added, updated, or removed, check both Claude Code and Codex forms. Sync both sides when applicable; when one side is not applicable, record the reason in this registry and docs/update-log.md."
   },
   "artifacts": [
+    {
+      "id": "claude-skill:impeccable",
+      "type": "claude-code-skill",
+      "name": "impeccable",
+      "path": "claude-code/skills/impeccable/4.8.2/",
+      "vaultVersion": "4.8.2",
+      "upstreamVersion": "4.8.2",
+      "versionSource": "SKILL.md metadata.version",
+      "snapshotDate": "2026-11-13",
+      "source": "https://github.com/pbakaus/impeccable/tree/b4bff1626c344067788c2679f048a20057c7cc5a",
+      "runtimeDependencies": ["Impeccable engine 0.1.22; included in Vault component 1.0.0 for Windows x64"],
+      "notes": "Unchanged upstream assets and Apache-2.0 license. Model settings, Hooks and native subagent registration remain unchanged. Browser/live modes may need other tools."
+    },
+    {
+      "id": "codex-skill:impeccable",
+      "type": "codex-skill",
+      "name": "impeccable",
+      "path": "codex/skills/impeccable/4.8.2/",
+      "vaultVersion": "4.8.2",
+      "upstreamVersion": "4.8.2",
+      "versionSource": "SKILL.md metadata.version",
+      "snapshotDate": "2026-11-13",
+      "source": "https://github.com/pbakaus/impeccable/tree/b4bff1626c344067788c2679f048a20057c7cc5a",
+      "runtimeDependencies": ["Impeccable engine 0.1.22; included in Vault component 1.0.0 for Windows x64"],
+      "notes": "Mirrors Claude source assets. Project install uses .agents/skills; user scope requires an explicit client home. Model discovery depends on the installed client."
+    },
     {
       "id": "claude-skill:browser-proxy-access",
       "type": "claude-code-skill",

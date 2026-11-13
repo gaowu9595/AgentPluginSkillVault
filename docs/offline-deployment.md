@@ -2,6 +2,12 @@
 
 这个仓库的定位是保存可审查、可复制的 Agent 插件、skill 和 MCP 配置快照，便于内网环境在不能联网下载的情况下交给大模型读取和部署。
 
+完整组件与源码快照分别维护。组件的独立性、安装保护和验证要求见
+[交付约束](component-rules.md)，版本、不可覆盖的发行记录及升级流程见
+[版本管理](component-versioning.md)。已提供完整离线包的项目从
+[组件目录](../registry/components.json)进入，按各自管理脚本安装；下面的手工依赖准备流程
+适用于其余源码快照。首包为 [Impeccable](../components/impeccable/README.md)。
+
 ## 能离线保存的内容
 
 | 类型 | 可持久化内容 | 不能只靠本仓库解决的内容 |

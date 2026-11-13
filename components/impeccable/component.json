@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "componentId": "impeccable",
+  "componentVersion": "1.0.0",
+  "platform": "windows-x64",
+  "upstream": {
+    "repository": "https://github.com/pbakaus/impeccable",
+    "version": "4.8.2",
+    "commit": "b4bff1626c344067788c2679f048a20057c7cc5a",
+    "license": "Apache-2.0",
+    "skillSha256": "b93158704d429a08091b6550f8ac3fb3f820a73fff33c6e42dcc92909523cd1e",
+    "licenseSha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812"
+  },
+  "engine": {
+    "version": "0.1.22",
+    "sha256": "4bacf8c756ec3fda3b9fcb69bf1869d4d700ff471be1e31cbff669222dcd8ff2",
+    "asset": "impeccable-windows-x64.exe",
+    "source": "https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.22"
+  },
+  "sourceSnapshots": {
+    "claude": "claude-code/skills/impeccable/4.8.2",
+    "codex": "codex/skills/impeccable/4.8.2"
+  },
+  "management": {
+    "entryPoint": "manage.ps1",
+    "actions": ["status", "install", "check", "uninstall"],
+    "requires": "Windows PowerShell 5.1 or later",
+    "networkDuringInstall": false,
+    "modelDuringInstall": false,
+    "hooksEnabledDuringInstall": false
+  },
+  "limits": [
+    "Windows x64 only; no automatic model call or client restart.",
+    "Installs the upstream Skill; native subagent registration is not changed.",
+    "Browser live mode, screenshots and design generation can require additional tools or services.",
+    "Client installation tests and local detector checks do not prove model selection or intranet acceptance."
+  ]
+}

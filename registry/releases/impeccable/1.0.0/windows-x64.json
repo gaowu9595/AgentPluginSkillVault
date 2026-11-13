@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "componentId": "impeccable",
+  "componentVersion": "1.0.0",
+  "platform": "windows-x64",
+  "protocolVersion": 1,
+  "upstream": {
+    "repository": "https://github.com/pbakaus/impeccable",
+    "version": "4.8.2",
+    "commit": "b4bff1626c344067788c2679f048a20057c7cc5a",
+    "license": "Apache-2.0",
+    "skillSha256": "b93158704d429a08091b6550f8ac3fb3f820a73fff33c6e42dcc92909523cd1e",
+    "licenseSha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812"
+  },
+  "engine": {
+    "version": "0.1.22",
+    "sha256": "4bacf8c756ec3fda3b9fcb69bf1869d4d700ff471be1e31cbff669222dcd8ff2",
+    "asset": "impeccable-windows-x64.exe",
+    "source": "https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.22"
+  },
+  "archive": {
+    "filename": "impeccable-1.0.0-windows-x64.zip",
+    "bytes": 10477144,
+    "sha256": "6092911dabe341c1ed9a635d68e2fd03f3194b7598bc9c504660b74d9cabbc11"
+  },
+  "manifestSha256": "e6e324ccecf225c16943e0fb192b34608f08e1e8b4a02250d797a0f4f1d26c0c",
+  "downloadUrls": [],
+  "validation": "docs/reports/2026-11-13-impeccable-component.md"
+}
