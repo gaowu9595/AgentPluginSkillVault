@@ -1,6 +1,13 @@
 # Agent Plugin Skill Vault
 
+代码仓库：[gaowu9595/AgentPluginSkillVault](https://github.com/gaowu9595/AgentPluginSkillVault)。
+
 这个仓库用于持久化保存自己开发或转换过的 Agent 插件、Skill 和转换资料，覆盖 Claude Code 与 Codex 两套形态。
+
+本仓库独立于 SwitchAI 维护，不依赖其源码或安装目录。当前主要保存源码与配置快照，
+不代表所有能力都已具备完整离线运行环境；部署前须按
+[离线部署说明](docs/offline-deployment.md)准备依赖并验证目标客户端兼容性。
+大型离线运行包单独分发，Git 保留对应的构建资料、版本记录及许可证。
 
 ## 目录约定
 
@@ -16,8 +23,8 @@
 
 ## 当前快照
 
-- `claude-code/plugins/design-session/1.0.4/`：当前 Claude Code `design-session` 原始版本，包含 `requirements-clarify`、database-review V2、概要设计可读性门禁和通用权限证据门禁。
-- `codex/plugins/design-session/1.0.4/`：当前 Codex 转换版本；支持 `design-quality`、数据库首次全量/后续增量审核、权限事实源核对，以及 Agent 失败快速退出。
+- `claude-code/plugins/design-session/1.0.5/`：Claude Code 原生快照，业务规则同步当前 Codex App 基准，保留 Claude manifest 与命令格式。
+- `codex/plugins/design-session/1.0.5/`：当前 Codex App 快照 `1.0.5+codex.20261010.mastergo`；新增 MasterGo/SeerDesign 链接隐式触发与无 MCP 的 PNG 导出兜底；保留 `design-quality`、数据库增量审核、权限事实源核对及 Agent 失败快速退出。
 - `claude-code/skills/browser-proxy-access/`、`claude-code/skills/doc/`、`claude-code/skills/spreadsheet/`、`claude-code/skills/slides/`：与 Codex 侧同名 skill 保持同步的 Claude Code skill 快照。
 - `codex/skills/browser-proxy-access/`、`codex/skills/doc/`、`codex/skills/spreadsheet/`、`codex/skills/slides/`：从本机 Codex skills 目录导入或整理的 skill 快照，用于代理访问、`.docx`、`.xlsx`/`.csv`/`.tsv`、`.pptx` 文件处理。
 - `claude-code/mcp-servers/mastergo-magic/`：与 Codex 侧保持同步的 MasterGo Magic MCP 启动脚本快照和 Claude Code 接入说明。
@@ -27,7 +34,7 @@
 
 ```text
 E:\py_workspace\knowledge-service\.claude\plugins\plugins\design-session
-C:\Users\Administrator\plugins\design-session
+C:\Users\Administrator\.codex\plugins\cache\claude2codex-local\design-session\1.0.4+codex.20260920111435
 C:\Users\Administrator\.codex\skills\doc
 C:\Users\Administrator\.codex\skills\spreadsheet
 C:\Users\Administrator\.codex\skills\slides

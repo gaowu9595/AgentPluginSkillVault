@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-10-10",
   "versioningPolicy": {
     "vaultVersion": "Version used by this repository for change tracking and offline deployment.",
     "upstreamVersion": "Version declared by the original artifact when one exists.",
@@ -149,27 +149,37 @@
       "id": "claude-plugin:design-session",
       "type": "claude-code-plugin",
       "name": "design-session",
-      "path": "claude-code/plugins/design-session/1.0.4/",
-      "vaultVersion": "1.0.4",
-      "upstreamVersion": "1.0.4",
+      "path": "claude-code/plugins/design-session/1.0.5/",
+      "vaultVersion": "1.0.5",
+      "upstreamVersion": "1.0.5",
       "versionSource": ".claude-plugin/plugin.json",
-      "snapshotDate": "2026-09-20",
-      "source": "E:\\py_workspace\\knowledge-service\\.claude\\plugins\\plugins\\design-session",
-      "runtimeDependencies": ["Python >= 3.9（流程证据校验器）"],
-      "notes": "保留通用流程定义、流程图、证据校验、数据库分级审核和权限门禁。2026-09-20 同步接口可读契约、唯一详细定义位置、字段来源追溯及按影响复核规则；不新增审核轮次。"
+      "snapshotDate": "2026-10-10",
+      "source": "codex/plugins/design-session/1.0.5/",
+      "runtimeDependencies": [
+        "Python >= 3.9（流程证据校验器）",
+        "Node.js >= 18（MasterGo 可选）",
+        "Playwright + Chrome/Edge/Chromium（MasterGo PNG）",
+        "MG_MCP_TOKEN 或既有专用浏览器登录（MasterGo）"
+      ],
+      "notes": "Added implicitly discoverable MasterGo/SeerDesign skill and analyze routing, PNG/runtime evidence exporter, MCP-independent fallback, and non-secret per-origin browser runtime memory. Codex 1.0.5 is installed and enabled; Claude Code source and Vault snapshot are synchronized without rewriting its client-managed installation cache. Previous database-review delivery-boundary changes retained."
     },
     {
       "id": "codex-plugin:design-session",
       "type": "codex-plugin",
       "name": "design-session",
-      "path": "codex/plugins/design-session/1.0.4/",
-      "vaultVersion": "1.0.4+codex.20260920020027",
-      "upstreamVersion": "1.0.4",
+      "path": "codex/plugins/design-session/1.0.5/",
+      "vaultVersion": "1.0.5+codex.20261010.mastergo",
+      "upstreamVersion": "1.0.5",
       "versionSource": ".codex-plugin/plugin.json",
-      "snapshotDate": "2026-09-20",
-      "source": "C:\\Users\\Administrator\\plugins\\design-session",
-      "runtimeDependencies": ["Python >= 3.9（流程证据校验器）"],
-      "notes": "当前 Codex 安装版为 1.0.4+codex.20260920020027。同步接口可读契约、唯一详细定义位置、字段来源追溯及按影响复核规则；保留通用流程证据校验、数据库风险分级、P2 不循环和已有有效证据复用。"
+      "snapshotDate": "2026-10-10",
+      "source": "C:\\Users\\Administrator\\.codex\\plugins\\cache\\claude2codex-local\\design-session\\1.0.5+codex.20261010.mastergo",
+      "runtimeDependencies": [
+        "Python >= 3.9（流程证据校验器）",
+        "Node.js >= 18（MasterGo 可选）",
+        "Playwright + Chrome/Edge/Chromium（MasterGo PNG）",
+        "MG_MCP_TOKEN 或既有专用浏览器登录（MasterGo）"
+      ],
+      "notes": "Added implicitly discoverable MasterGo/SeerDesign skill and analyze routing, PNG/runtime evidence exporter, MCP-independent fallback, and non-secret per-origin browser runtime memory. Codex 1.0.5 is installed and enabled; Claude Code source and Vault snapshot are synchronized without rewriting its client-managed installation cache. Previous database-review delivery-boundary changes retained."
     },
     {
       "id": "claude-mcp:mastergo-magic",

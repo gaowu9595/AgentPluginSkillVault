@@ -1,0 +1,36 @@
+{
+  "author": {
+    "name": "MSSP Team"
+  },
+  "description": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理",
+  "interface": {
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Use the design-session skills."
+    ],
+    "developerName": "MSSP Team",
+    "displayName": "Design Session",
+    "longDescription": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理",
+    "shortDescription": "设计会话管理 — 需求理解、设计推进、上下文持久化的完整设计生命周期管理"
+  },
+  "keywords": [
+    "design",
+    "session",
+    "architecture",
+    "persistence",
+    "workflow",
+    "database-review",
+    "design-quality",
+    "permission-evidence",
+    "mastergo",
+    "seerdesign"
+  ],
+  "license": "UNLICENSED",
+  "name": "design-session",
+  "skills": "./skills/",
+  "version": "1.0.5+codex.20261010.mastergo"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "数据库设计审核"
+  short_description: "先审设计最小性，再按变更风险分级审核数据库结构与事务"
+  default_prompt: "使用 $database-review 审核这个数据库设计；先判断是否需要持久化，再选择快速、增量或完整审核。"

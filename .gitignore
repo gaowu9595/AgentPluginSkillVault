@@ -14,3 +14,24 @@ tmp/
 temp/
 .DS_Store
 Thumbs.db
+
+# Local credentials and client state; examples may be tracked.
+.env
+.env.*
+!.env.example
+!.env.*.example
+**/.claude/settings.local.json
+**/.codex/auth.json
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Runtime bundles and generated validation output are distributed separately.
+*.zip
+*.exe
+*.dll
+*.db
+*.sqlite
+*.sqlite3
+.ui_test/

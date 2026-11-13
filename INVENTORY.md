@@ -12,8 +12,8 @@
 | Codex skill | slides | snapshot-20260627 | `codex/skills/slides/` | `C:\Users\Administrator\.codex\skills\slides` | Create and edit editable PowerPoint `.pptx` decks |
 | Claude Code MCP server | mastergo-magic | config-snapshot-20260627 | `claude-code/mcp-servers/mastergo-magic/` | `codex/mcp-servers/mastergo-magic/` | Mirrors MasterGo Magic launcher; Claude Code config must be adapted to target client version |
 | Codex MCP server | mastergo-magic | config-snapshot-20260627 | `codex/mcp-servers/mastergo-magic/` | `C:\Users\Administrator\.codex\config.toml` + `E:\py_workspace\knowledge-service\Workflow\.ai\tools\start_mastergo_magic_mcp.ps1` | MasterGo Magic MCP launcher and Codex config snippet; offline use requires preinstalled Node/npm package cache |
-| Claude Code plugin | design-session | 1.0.4 | `claude-code/plugins/design-session/1.0.4/` | `E:\py_workspace\knowledge-service\.claude\plugins\plugins\design-session` | 新增通用权限事实源、复用/新增判断、代码证据和项目校验命令门禁 |
-| Codex plugin | design-session | 1.0.4+codex.20260728163046 | `codex/plugins/design-session/1.0.4/` | `C:\Users\Administrator\plugins\design-session` | 同步权限证据门禁并保留 design-quality、database-review 与失败快速退出规则 |
+| Claude Code plugin | design-session | 1.0.5 | `claude-code/plugins/design-session/1.0.5/` | `codex/plugins/design-session/1.0.5/` | Mirrors current Codex App business rules, including MasterGo fallback, while retaining Claude Code manifest and command syntax |
+| Codex plugin | design-session | 1.0.5+codex.20261010.mastergo | `codex/plugins/design-session/1.0.5/` | `C:\Users\Administrator\.codex\plugins\cache\claude2codex-local\design-session\1.0.5+codex.20261010.mastergo` | Installed Codex snapshot; includes automatic MasterGo/SeerDesign PNG fallback |
 
 ## 待补充
 

@@ -8,4 +8,4 @@
 claude-code/plugins/<plugin-name>/<version>/
 ```
 
-当前版本：`claude-code/plugins/design-session/1.0.4/`。
+当前版本：`claude-code/plugins/design-session/1.0.5/`。

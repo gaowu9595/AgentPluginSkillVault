@@ -1,5 +1,19 @@
 # Update Log
 
+## 2026-11-13
+
+- 添加 GitHub 仓库入口 `gaowu9595/AgentPluginSkillVault`，保留已有提交历史及 Claude Code/Codex 的 DesignSession 1.0.5 快照。
+- 明确仓库独立于 SwitchAI；当前快照仍需部署运行依赖，不宣称已完成通用离线安装组件的改造。大型运行包单独分发。
+- 修正 Claude 插件索引的当前版本，补充本地凭据、数据库及生成包的 Git 忽略规则。
+- 本次检查：15 个 JSON 可解析，12 项台账路径及插件版本一致；双端 1.0.5 各通过 19 项流程测试、7 项 MasterGo 本地回归、数据库 Skill 校验和权限证据门禁校验。未调用真实模型、设计站点或内网业务服务。
+
+## 2026-10-09
+
+- Used the active Codex desktop App cache `1.0.4+codex.20260920111435` as the `design-session` rule baseline; synchronized its manifest version and `database-review` skill into the Vault.
+- Applied the same `database-review` rule change to the Claude Code 1.0.4 snapshot, retaining its native manifest, directory layout, and command syntax.
+- Updated README, Inventory, and `registry/artifacts.json` version, source, snapshot date, and cross-client notes.
+- Verification: both workflow suites passed 19 tests; Claude manifest validation, both database-review validators, and both permission-evidence gate tests passed. All 52 Codex snapshot files match the active App cache; shared rules and common skills match Claude Code, with only the client-specific `analyze/SKILL.md` filename differing.
+
 ## 2026-09-21
 
 - 按跨客户端同步准则补齐 `design-session` 1.0.4 Claude Code 侧的 `analyze`、`requirements-clarify` 和 `database-review` 规则，使证据指纹、状态索引、产品确认门禁和概要设计/数据库编码契约边界与 Codex 侧一致；保留 Claude Code 命令描述的客户端格式差异。
@@ -130,3 +144,12 @@ claude-code/mcp-servers/mastergo-magic/
 - 将 `design-session` 升级为 1.0.4，并新增 Claude Code/Codex 双端版本快照，保留 1.0.3 供回退。
 - 概要设计和安全审查新增通用权限证据门禁：先发现项目权限事实源，逐接口说明复用或新增并提供代码证据；禁止在没有项目证据时创造角色、权限码或授权层。
 - 项目提供确定性权限校验命令时必须执行并记录结果；门禁本身不包含任何具体项目、权限框架或字段名。
+
+## 2026-10-10
+
+- 发布 DesignSession 1.0.5，Codex 安装并启用 `1.0.5+codex.20261010.mastergo`，同步 Claude/Codex Vault 快照和各自插件源；保留原先数据库审核交付边界等未提交变更。
+- 新增可隐式触发的 `mastergo` 技能；`analyze` 自动识别用户消息和资料中的 MasterGo/SeerDesign 链接，`help` 和外部资源索引同步。
+- 提供参数化 PowerShell/Node PNG 导出与节点/文本保存；无 MCP 时先自主尝试只读接口及浏览器运行时，不把网页壳或 MCP 缺失当作文件不可读。图片/结构分别记录，失败保留具体证据，token 不进入命令或日志，鉴权头仅发给设计站点同源。
+- 全新浏览器配置的实测未能加载设计稿；发现并复用已有专用登录配置后成功。仅将验证过的配置和依赖路径保存在用户 `mastergo/runtime.json`，后续会话按站点自动复用；不保存 token，不修改全局 MCP 注册。
+- 验证包括链接/源图层解析、凭据同源边界、PNG 完整性、部分成功状态、失败留证与旧图不复用的 7 项回归，以及原有流程校验回归；以用户当前链接验证无 MCP 的实际 PNG 导出，保持本次 TLS 校验开启。
+- Claude Code 业务源和快照同步，未手动修改其客户端管理的历史安装缓存。Codex 新版安装路径由 `codex plugin add` 返回，重启客户端刷新技能目录。

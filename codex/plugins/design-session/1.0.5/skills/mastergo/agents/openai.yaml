@@ -1,0 +1,6 @@
+interface:
+  display_name: "MasterGo 交互稿读取"
+  short_description: "读取 MasterGo 和 SeerDesign 交互稿，无 MCP 时自动尝试本地图片导出"
+  default_prompt: "使用 $mastergo 读取给定设计稿链接，导出 PNG 并保存可追溯的结构与文本。"
+policy:
+  allow_implicit_invocation: true
