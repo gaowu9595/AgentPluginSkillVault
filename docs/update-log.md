@@ -2,9 +2,14 @@
 
 ## 2026-11-13
 
+- Playwright Test 独立组件 `1.0.0` 已通过本地验证并登记为本机发行/推荐版本。固定 Windows x64、Playwright `1.60.0`、Node `24.11.1`、Chromium `148.0.7778.96 / 1223`；版本缓存共享且不可变，项目用例/证据使用 `.agent-vault-tests`。
+- 明确显式 `install/check/enable` 与 `status/disable/uninstall` 的区别；Claude 安装三个原生 `vault-playwright-test-*` Agent，Codex 仅使用 Skill 角色参考资料，项目 MCP 均为 `vault_playwright`。不调用模型、不启用 Hooks、不修改全局设置；卸载保留用例、报告、私人文件和共享缓存。SwitchAI 既有测试及记忆接入不变。
+- 同步两项 `vault-playwright` Skill 台账及本机发行条目；结果见 [验证报告](reports/2026-11-13-playwright-independent.md) 和 [发行记录](../registry/releases/playwright-test/1.0.0/windows-x64.json)。ZIP `347895174` 字节，SHA256 `3a87840a7a0edebd2a157fdf7c0326eb48e8252212c930716df915dc5f545a94`，manifest SHA256 `ec064173472ff1ddbfc77af26128bde77b661d0c594718051f7adbce8ff11352`；Git 索引检出副本第二次构建哈希一致。二进制仅保存在本机，未上传。
+- 控制器最终验证：Node 34 通过；构建器 23 通过、1 项因 Windows 符号链接权限跳过；registry 3 通过。实际安装后的浏览器演示使用相同 7 条用例，缺陷版 5 通过/2 失败（TC04/TC05，退出码 1），修复版 7 通过（退出码 0）；每轮各 11 张截图、7 个视频、7 份 trace。上述为定向验证，不是全仓库测试结果。
+- 原生夹具的管理、Claude 发现、MCP 协议、Codex 配置、Codex Skill 发现五项均通过；Claude `2.1.317`、Codex `0.167.0-alpha.4.1` 均发现 Impeccable，未提交模型 turn。夹具导入开发环境的 `claude_agent_sdk`、`mcp`、`pywin32` 库，不导入 SwitchAI 源码；目标独立组件不依赖 Python。未声明真实模型连接、模型自主选择或公司 TP/内网业务验收通过。
 - 落盘 AGENTS/CLAUDE 入口、组件边界、独立版本规则和当前上下文；源码台账与离线发行台账分开，组件/上游/引擎/协议/清单分别记录。
 - 新增 Impeccable 独立组件 1.0.0（Skill 4.8.2、引擎 0.1.22、Windows x64），双端原样快照、PowerShell 管理入口、可复现构建、逐文件校验及发行记录。安装不依赖 SwitchAI，不修改模型或 Hooks。
-- 新组件最终 19 项隔离测试通过且无跳过，包含双端真实引擎与本地 detector；两次构建哈希一致。限制与问题修复见 [本次验证](reports/2026-11-13-impeccable-component.md)。ZIP 单独保存在本机，未上传二进制，不宣称已接入 SwitchAI。
+- 此前 Impeccable 组件最终 19 项隔离测试通过且无跳过，包含双端真实引擎与本地 detector；两次构建哈希一致。限制与问题修复见 [Impeccable 验证](reports/2026-11-13-impeccable-component.md)。这是已记录的 Impeccable 结果，不是 Playwright 本轮验证。ZIP 单独保存在本机，未上传二进制，不宣称已接入 SwitchAI。
 - 添加 GitHub 仓库入口 `gaowu9595/AgentPluginSkillVault`，保留已有提交历史及 Claude Code/Codex 的 DesignSession 1.0.5 快照。
 - 明确仓库独立于 SwitchAI；当前快照仍需部署运行依赖，不宣称已完成通用离线安装组件的改造。大型运行包单独分发。
 - 修正 Claude 插件索引的当前版本，补充本地凭据、数据库及生成包的 Git 忽略规则。

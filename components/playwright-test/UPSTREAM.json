@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "componentId": "playwright-test",
+  "componentVersion": "1.0.0",
+  "runtimeArchive": {
+    "filename": "playwright-test-component.zip",
+    "sha256": "f77ea22b64479fbaa18d52227d1bdef07b9aa54439bac1cd72af35922c5761db",
+    "bytes": 347851769
+  },
+  "originalPackageMetadata": {
+    "bytes": 347851769,
+    "format": 1,
+    "platform": "windows-x64",
+    "profile": "chromium-test-agents",
+    "sha256": "f77ea22b64479fbaa18d52227d1bdef07b9aa54439bac1cd72af35922c5761db",
+    "upstream": {
+      "adaptation": [
+        "Rename agent MCP prefix to mcp__switchai_testing__; remove model overrides.",
+        "Use managed .switchai-tests specs, explicit seed and relative fixtures imports.",
+        "Preserve true failures; remove upstream healer fixme/skip guidance; record edits.",
+        "Host supplies MCP separately; no plugin .mcp.json; replay with bundled Node/CLI."
+      ],
+      "agents": {
+        "playwright-test-generator.md": {
+          "adaptedSha256": "59d7e675f188e7b290aea4a681232f7479c86843bff4740993de67bb7d649d46",
+          "source": "playwright@1.60.0 generated .claude/agents/playwright-test-generator.md",
+          "sourceSha256": "9a43881bf76f3dc51ba01228befb36c9f20a3f2cf811e1e7ea0aeb5fee401cde"
+        },
+        "playwright-test-healer.md": {
+          "adaptedSha256": "17d24583ebc82157f2d352da91d569bb3e9f1b5ce38d94088fd39ca0cf28f554",
+          "source": "playwright@1.60.0 generated .claude/agents/playwright-test-healer.md",
+          "sourceSha256": "88ddd5a6e9576f6988d1dc3bdac1e21452765cd5fd4aa2ee814b2f094cbe4e5f"
+        },
+        "playwright-test-planner.md": {
+          "adaptedSha256": "64d071e0da4da49f711b7d664d34e9a3ea8613ed6447e3101e8dfa456be26c2e",
+          "source": "playwright@1.60.0 generated .claude/agents/playwright-test-planner.md",
+          "sourceSha256": "fc3cfbb370ddbe244033580ed62d9bd63bb000bb2291df2acbccd3348c4f8c16"
+        }
+      },
+      "browserRegistrySha256": "af53e32ffe35a024ddb34563700956b01ada00ac7e9270ba5df0604ec57e38e1",
+      "browsers": {
+        "chromium": {
+          "browserVersion": "148.0.7778.96",
+          "directory": "chromium-1223",
+          "executable": "chrome-win64/chrome.exe",
+          "revision": "1223",
+          "source": "playwright-core@1.60.0/browsers.json"
+        },
+        "chromium-headless-shell": {
+          "browserVersion": "148.0.7778.96",
+          "directory": "chromium_headless_shell-1223",
+          "executable": "chrome-headless-shell-win64/chrome-headless-shell.exe",
+          "revision": "1223",
+          "source": "playwright-core@1.60.0/browsers.json"
+        },
+        "ffmpeg": {
+          "directory": "ffmpeg-1011",
+          "executable": "ffmpeg-win64.exe",
+          "revision": "1011",
+          "source": "playwright-core@1.60.0/browsers.json"
+        },
+        "winldd": {
+          "directory": "winldd-1007",
+          "executable": "PrintDeps.exe",
+          "revision": "1007",
+          "source": "playwright-core@1.60.0/browsers.json"
+        }
+      },
+      "licenses": {
+        "LICENSES/chromium.txt": {
+          "sha256": "de96bd2927a923061cbb650aa16e0255309a335b06b74ef0c3bced2b0de24706",
+          "source": "Chromium 148.0.7778.96 / revision 1223: LICENSE.headless_shell (shared Chromium notices)"
+        },
+        "LICENSES/ffmpeg.txt": {
+          "sha256": "b634ab5640e258563c536e658cad87080553df6f34f62269a21d554844e58bfe",
+          "source": "ffmpeg-1011/COPYING.LGPLv2.1"
+        },
+        "LICENSES/node.txt": {
+          "extractedFrom": "claude-memory-component.zip!/LICENSES/node.txt",
+          "sha256": "537308465103a306d0e3eecf42632b4ff1b48aaaec044e9fc10a78c81fd00b34",
+          "source": "https://github.com/nodejs/node/blob/v24.11.1/LICENSE",
+          "sourceArchiveSha256": "9e407ea2c0b907bb40c0e77513de7b5fc33a1421596fbdd6cb9c1db0c826495c"
+        },
+        "LICENSES/playwright-NOTICE.txt": {
+          "sha256": "6d602191187b35b9b01d2cffa01c8469c2c8d9de8a96f1bf868e0f264f51c81d",
+          "source": "playwright@1.60.0/NOTICE"
+        },
+        "LICENSES/playwright-ThirdPartyNotices.txt": {
+          "sha256": "b17ac0bd6f4b8207e440639cc8e0ba1bf1d9eaf9b12236764ab93b346c7abd8e",
+          "source": "playwright@1.60.0/ThirdPartyNotices.txt"
+        },
+        "LICENSES/playwright-core-NOTICE.txt": {
+          "sha256": "6d602191187b35b9b01d2cffa01c8469c2c8d9de8a96f1bf868e0f264f51c81d",
+          "source": "playwright-core@1.60.0/NOTICE"
+        },
+        "LICENSES/playwright-core-ThirdPartyNotices.txt": {
+          "sha256": "a549d329bad8806fe279f0ecae0fc0270dec7e7c2dc8ec10f90e394f7c32b144",
+          "source": "playwright-core@1.60.0/ThirdPartyNotices.txt"
+        },
+        "LICENSES/playwright-core.txt": {
+          "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb",
+          "source": "playwright-core@1.60.0/LICENSE"
+        },
+        "LICENSES/playwright-test-NOTICE.txt": {
+          "sha256": "6d602191187b35b9b01d2cffa01c8469c2c8d9de8a96f1bf868e0f264f51c81d",
+          "source": "@playwright/test@1.60.0/NOTICE"
+        },
+        "LICENSES/playwright-test.txt": {
+          "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb",
+          "source": "@playwright/test@1.60.0/LICENSE"
+        },
+        "LICENSES/playwright.txt": {
+          "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb",
+          "source": "playwright@1.60.0/LICENSE"
+        },
+        "LICENSES/winldd.txt": {
+          "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb",
+          "source": "playwright-core@1.60.0/LICENSE (PrintDeps.exe)"
+        }
+      },
+      "node": {
+        "arch": "x64",
+        "platform": "win32",
+        "sha256": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
+        "source": "https://nodejs.org/dist/v24.11.1/node-v24.11.1-win-x64.zip",
+        "version": "24.11.1"
+      },
+      "nodeVersion": "24.11.1",
+      "packages": {
+        "@playwright/test": {
+          "license": "Apache-2.0",
+          "packageJsonSha256": "cf92117ef1d8cbf1e4b2dffb63a0da552c0173bd6052f0f45711c0f00b79dc99",
+          "source": "https://registry.npmjs.org/@playwright/test/-/test-1.60.0.tgz",
+          "version": "1.60.0"
+        },
+        "playwright": {
+          "license": "Apache-2.0",
+          "packageJsonSha256": "8be9edc5642a8c761b677e7af8b9937f36c0443a91e14765877716d70034e5bf",
+          "source": "https://registry.npmjs.org/playwright/-/playwright-1.60.0.tgz",
+          "version": "1.60.0"
+        },
+        "playwright-core": {
+          "license": "Apache-2.0",
+          "packageJsonSha256": "6f7b58cc55449321279f11ca97d4e451c391738b77db32cdbcedf02851e3f097",
+          "source": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.60.0.tgz",
+          "version": "1.60.0"
+        }
+      },
+      "repository": "https://github.com/microsoft/playwright",
+      "version": "1.60.0"
+    },
+    "version": "1.60.0-switchai.1"
+  },
+  "packaging": {
+    "metadataSource": "SwitchAI app/assets/playwright-test-component.json (read-only provenance snapshot; not a build dependency)",
+    "runtimeIncludes": ["bin/", "runtime/", "browsers/", "LICENSES/"],
+    "preservedUpstreamFile": "RUNTIME-UPSTREAM.json",
+    "omittedRuntimePaths": ["plugin/", "scripts/", "manifest.json"],
+    "zip": {
+      "compression": "DEFLATE",
+      "compressionLevel": 6,
+      "memberOrder": "sorted by path",
+      "memberTimestamp": "2020-01-01T00:00:00",
+      "note": "Fixed level 6 is part of the deterministic build recipe; no level-9 release was published."
+    },
+    "changes": [
+      "Verify the complete prepared archive and every original manifest member before selecting runtime bytes.",
+      "Preserve the original package metadata above and the original UPSTREAM.json bytes as RUNTIME-UPSTREAM.json.",
+      "Omit the host-specific plugin, adapted host agents and source selfcheck scripts; their provenance remains historical, not a claim that those files ship.",
+      "The independent Vault lifecycle, MCP adapter, agents and mirrored Skill snapshots are separate component sources with a new component identity and manifest.",
+      "Keep all bundled upstream licenses and notices; add Apache-2.0 terms for the Vault component sources without relicensing third-party code."
+    ]
+  },
+  "vaultAgentAdaptations": {
+    "source": "playwright@1.60.0 generated .claude/agents; original bytes retained under upstream-agents/",
+    "license": "Apache-2.0",
+    "changes": [
+      "Namespace native agent names as vault-playwright-test-* and tools as mcp__vault_playwright__*.",
+      "Use .agent-vault-tests plans, explicit managed seed and relative imports from the managed fixtures.",
+      "Preserve genuine product failures, prohibit skipped or weakened assertions, and record every healing edit.",
+      "Keep MCP/model settings and package installation outside agent edits; report missing prerequisites truthfully."
+    ],
+    "files": {
+      "playwright-test-generator.md": {
+        "sourcePath": "components/playwright-test/upstream-agents/playwright-test-generator.md",
+        "sourceSha256": "9a43881bf76f3dc51ba01228befb36c9f20a3f2cf811e1e7ea0aeb5fee401cde",
+        "adaptedPath": "components/playwright-test/agents/vault-playwright-test-generator.md",
+        "adaptedSha256": "c4022061c409ecd7142ff522e3fa66d9e363cba69594e5f169d51e7ecea3fe55"
+      },
+      "playwright-test-healer.md": {
+        "sourcePath": "components/playwright-test/upstream-agents/playwright-test-healer.md",
+        "sourceSha256": "88ddd5a6e9576f6988d1dc3bdac1e21452765cd5fd4aa2ee814b2f094cbe4e5f",
+        "adaptedPath": "components/playwright-test/agents/vault-playwright-test-healer.md",
+        "adaptedSha256": "6264140b86ef5caab9b0c3d1f08588c24d8008e85263084f83efbf6568af4449"
+      },
+      "playwright-test-planner.md": {
+        "sourcePath": "components/playwright-test/upstream-agents/playwright-test-planner.md",
+        "sourceSha256": "fc3cfbb370ddbe244033580ed62d9bd63bb000bb2291df2acbccd3348c4f8c16",
+        "adaptedPath": "components/playwright-test/agents/vault-playwright-test-planner.md",
+        "adaptedSha256": "08a0302afc724cf980eea8c1f6b2d6ededc749035eb1e2434be9d3cd7a5dd6a1"
+      }
+    }
+  },
+  "vaultComponentSourceLicense": {
+    "license": "Apache-2.0",
+    "copyright": "Copyright 2026 AgentPluginSkillVault contributors",
+    "outputPath": "LICENSE",
+    "termsSource": "components/playwright-test/LICENSE (component-local Apache-2.0 terms)",
+    "scope": "Vault-authored component adapter, agents and Skill; separately vendored sources retain their own licenses."
+  }
+}

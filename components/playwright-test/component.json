@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "componentId": "playwright-test",
+  "componentVersion": "1.0.0",
+  "platform": "windows-x64",
+  "upstream": {
+    "repository": "https://github.com/microsoft/playwright",
+    "version": "1.60.0",
+    "license": "Apache-2.0"
+  },
+  "engine": {
+    "name": "Node.js",
+    "version": "24.11.1",
+    "sha256": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf"
+  },
+  "runtimeArchive": {
+    "filename": "playwright-test-component.zip",
+    "bytes": 347851769,
+    "sha256": "f77ea22b64479fbaa18d52227d1bdef07b9aa54439bac1cd72af35922c5761db"
+  },
+  "sourceSnapshots": {
+    "claude": "claude-code/skills/vault-playwright/1.0.0",
+    "codex": "codex/skills/vault-playwright/1.0.0"
+  },
+  "dependencies": {
+    "playwright": "1.60.0",
+    "chromium": "148.0.7778.96",
+    "chromiumRevision": "1223",
+    "ffmpegRevision": "1011",
+    "smol-toml": {
+      "version": "1.6.0",
+      "license": "BSD-3-Clause",
+      "source": "https://registry.npmjs.org/smol-toml/-/smol-toml-1.6.0.tgz",
+      "archiveSha256": "b65b5aecf4514af6f49599aef9668b72922c331d8735f8457f16be7eaa8f90f6",
+      "moduleSha256": "db5bf42d36ba6c950c9bd651026be9a771e55a2c82f8b64866de8928d04e1fd1",
+      "licenseSha256": "fa5659948374d4f555594f47f6da073b40dc503e921aeeece30df4362b3051a5"
+    }
+  }
+}

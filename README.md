@@ -19,8 +19,19 @@ AI 终端从 [AGENTS.md](AGENTS.md) 开始；当前进展见
 Windows x64 引擎 0.1.22。支持独立项目/用户范围安装、状态、自检及保留个人文件的卸载。
 安装不改模型、MCP 或 Hooks；不需要 SwitchAI、Node 或 Python。
 
-离线版本目录为 [components.json](registry/components.json)，每个 ZIP 的版本、来源、
-大小和 SHA256 记录在 `registry/releases/`。ZIP 单独分发；当前不提供虚构的下载地址。
+[Playwright Test 1.0.0](components/playwright-test/README.md) 已完成本地验证并登记本机发行。
+目标为 Windows x64，固定 Playwright `1.60.0`、
+Node `24.11.1`、Chromium `148.0.7778.96 / 1223`。运行依赖使用共享不可变版本缓存，
+用例与证据位于项目 `.agent-vault-tests`；安装、自检、启用分别显式执行 `install/check/enable`。
+Claude Code 安装三个原生 Agent；Codex 使用 Skill 内的角色参考资料。两端项目 MCP 名为
+`vault_playwright`，管理动作不调用模型、不启用 Hooks、不修改全局设置。目标机无需另装 Python/Node，
+SwitchAI 现有接入保持不变。已验证真实安装、浏览器缺陷/修复重放、双端原生发现及 Git 索引检出重建，
+结果见 [验证报告](docs/reports/2026-11-13-playwright-independent.md)，来源和边界见
+[适配盘点](docs/adaptation-inventory.md)。未验证模型自主选择或公司 TP/内网业务验收。
+
+离线组件目录为 [components.json](registry/components.json)。已发行 ZIP 的版本、来源、大小和 SHA256
+记录在 `registry/releases/`，Playwright 见 [1.0.0 发行记录](registry/releases/playwright-test/1.0.0/windows-x64.json)。
+ZIP 单独分发，目前仅在本机保存，未上传二进制；不提供虚构的下载地址。
 
 ## 目录约定
 
@@ -36,6 +47,9 @@ Windows x64 引擎 0.1.22。支持独立项目/用户范围安装、状态、自
 
 ## 当前快照
 
+- [Claude vault-playwright 1.0.0](claude-code/skills/vault-playwright/1.0.0/SKILL.md) 与
+  [Codex 同名 Skill](codex/skills/vault-playwright/1.0.0/SKILL.md)：镜像源码依赖上述独立组件；
+  安装、浏览器重放及双端原生发现已有本地验证，模型自主选择与实际业务验收另行验证。
 - `claude-code/plugins/design-session/1.0.5/`：Claude Code 原生快照，业务规则同步当前 Codex App 基准，保留 Claude manifest 与命令格式。
 - `codex/plugins/design-session/1.0.5/`：当前 Codex App 快照 `1.0.5+codex.20261010.mastergo`；新增 MasterGo/SeerDesign 链接隐式触发与无 MCP 的 PNG 导出兜底；保留 `design-quality`、数据库增量审核、权限事实源核对及 Agent 失败快速退出。
 - `claude-code/skills/browser-proxy-access/`、`claude-code/skills/doc/`、`claude-code/skills/spreadsheet/`、`claude-code/skills/slides/`：与 Codex 侧同名 skill 保持同步的 Claude Code skill 快照。

@@ -15,6 +15,20 @@
           "record": "registry/releases/impeccable/1.0.0/windows-x64.json"
         }
       ]
+    },
+    {
+      "id": "playwright-test",
+      "name": "Playwright Test independent offline component",
+      "recommendedVersion": "1.0.0",
+      "distribution": "local-only",
+      "definition": "components/playwright-test/component.json",
+      "releases": [
+        {
+          "componentVersion": "1.0.0",
+          "platform": "windows-x64",
+          "record": "registry/releases/playwright-test/1.0.0/windows-x64.json"
+        }
+      ]
     }
   ]
 }

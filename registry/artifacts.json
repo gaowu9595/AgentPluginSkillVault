@@ -10,6 +10,42 @@
   },
   "artifacts": [
     {
+      "id": "claude-skill:vault-playwright",
+      "type": "claude-code-skill",
+      "name": "vault-playwright",
+      "path": "claude-code/skills/vault-playwright/1.0.0/",
+      "vaultVersion": "1.0.0",
+      "upstreamVersion": "1.60.0",
+      "versionSource": "SKILL.md metadata.version; upstreamVersion identifies Playwright, not the Vault-authored Skill.",
+      "snapshotDate": "2026-11-13",
+      "source": "components/playwright-test/UPSTREAM.json",
+      "componentId": "playwright-test",
+      "runtimeDependencies": [
+        "Windows x64; existing Claude Code client",
+        "Vault playwright-test 1.0.0 local release: bundled Node 24.11.1, Playwright 1.60.0, Chromium 148.0.7778.96 / revision 1223; no target Python dependency",
+        "Shared immutable version cache; project scenarios and evidence in .agent-vault-tests"
+      ],
+      "notes": "Mirrors the Codex Skill source. Explicit install/check/enable; project .claude/skills/vault-playwright, three native vault-playwright-test-* agents and .mcp.json MCP vault_playwright. Management makes no model call, Hooks or global settings changes. SwitchAI integration remains unchanged. Local-only release 1.0.0 verified with installed browser replay, Git-index checkout rebuild and native discovery without a model turn. No binary upload, live-model selection or company TP acceptance claim. Validation: docs/reports/2026-11-13-playwright-independent.md."
+    },
+    {
+      "id": "codex-skill:vault-playwright",
+      "type": "codex-skill",
+      "name": "vault-playwright",
+      "path": "codex/skills/vault-playwright/1.0.0/",
+      "vaultVersion": "1.0.0",
+      "upstreamVersion": "1.60.0",
+      "versionSource": "SKILL.md metadata.version; upstreamVersion identifies Playwright, not the Vault-authored Skill.",
+      "snapshotDate": "2026-11-13",
+      "source": "components/playwright-test/UPSTREAM.json",
+      "componentId": "playwright-test",
+      "runtimeDependencies": [
+        "Windows x64; existing Codex client",
+        "Vault playwright-test 1.0.0 local release: bundled Node 24.11.1, Playwright 1.60.0, Chromium 148.0.7778.96 / revision 1223; no target Python dependency",
+        "Shared immutable version cache; project scenarios and evidence in .agent-vault-tests"
+      ],
+      "notes": "Mirrors the Claude Skill source. Explicit install/check/enable; project .agents/skills/vault-playwright and .codex/config.toml MCP vault_playwright. Three workflow roles are Skill references only, not native Codex agents. Management makes no model call, Hooks or global settings changes. SwitchAI integration remains unchanged. Local-only release 1.0.0 verified with installed browser replay, Git-index checkout rebuild and native discovery without a model turn. No binary upload, live-model selection or company TP acceptance claim. Validation: docs/reports/2026-11-13-playwright-independent.md."
+    },
+    {
       "id": "claude-skill:impeccable",
       "type": "claude-code-skill",
       "name": "impeccable",

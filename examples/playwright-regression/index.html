@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>任务清单 · 工作台</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app-mode.js" defer></script>
+  <script src="task-model.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner"><img src="assets/mark.svg" alt="" width="28" height="28"><span>工作台</span><span class="session-label">当前会话</span></div>
+  </header>
+  <main>
+    <div class="page-heading">
+      <h1>任务清单</h1>
+      <div class="summary" aria-label="任务统计">
+        <span>待完成 <strong data-testid="active-count">0</strong></span>
+        <span class="completed-summary">已完成 <strong data-testid="completed-count">0</strong></span>
+      </div>
+    </div>
+    <form id="task-form" novalidate>
+      <label for="task-name">任务名称</label>
+      <div class="input-row">
+        <input id="task-name" name="title" type="text" placeholder="例如：核对发布清单" autocomplete="off" aria-describedby="task-error">
+        <button class="primary" type="submit">添加任务</button>
+      </div>
+      <p id="task-error" class="error" role="alert" hidden></p>
+    </form>
+    <p class="feedback" role="status" aria-live="polite"></p>
+    <section aria-label="清单">
+      <div class="list-toolbar">
+        <div class="filters" role="group" aria-label="筛选任务">
+          <button type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" data-filter="active" aria-pressed="false">待完成</button>
+          <button type="button" data-filter="completed" aria-pressed="false">已完成</button>
+        </div>
+        <span class="total" data-testid="total-count">共 0 项</span>
+      </div>
+      <ul id="task-list" aria-label="任务列表"></ul>
+      <div class="empty-state" id="empty-state">
+        <img src="assets/mark.svg" alt="" width="36" height="36">
+        <p id="empty-message">暂无任务</p>
+      </div>
+    </section>
+    <footer>本次会话清单 · 刷新后清空</footer>
+  </main>
+</body>
+</html>

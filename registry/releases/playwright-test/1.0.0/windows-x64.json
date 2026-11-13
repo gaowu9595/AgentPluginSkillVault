@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "componentId": "playwright-test",
+  "componentVersion": "1.0.0",
+  "platform": "windows-x64",
+  "protocolVersion": 1,
+  "upstream": {
+    "repository": "https://github.com/microsoft/playwright",
+    "version": "1.60.0",
+    "license": "Apache-2.0"
+  },
+  "engine": {
+    "name": "Node.js",
+    "version": "24.11.1",
+    "sha256": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf"
+  },
+  "archive": {
+    "filename": "playwright-test-1.0.0-windows-x64.zip",
+    "bytes": 347895174,
+    "sha256": "3a87840a7a0edebd2a157fdf7c0326eb48e8252212c930716df915dc5f545a94"
+  },
+  "manifestSha256": "ec064173472ff1ddbfc77af26128bde77b661d0c594718051f7adbce8ff11352",
+  "downloadUrls": [],
+  "validation": "docs/reports/2026-11-13-playwright-independent.md"
+}

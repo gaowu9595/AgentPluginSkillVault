@@ -4,3 +4,11 @@
 
 # These files enter deterministic component archives on Windows and other hosts.
 /components/** text eol=lf
+/components/playwright-test/upstream-agents/** -text
+/components/playwright-test/vendor/** -text
+/components/playwright-test/LICENSE -text
+/claude-code/skills/vault-playwright/** text eol=lf
+/codex/skills/vault-playwright/** text eol=lf
+/claude-code/skills/vault-playwright/1.0.0/LICENSE -text
+/codex/skills/vault-playwright/1.0.0/LICENSE -text
+/examples/playwright-regression/** text eol=lf

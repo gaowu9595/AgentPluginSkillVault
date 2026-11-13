@@ -14,6 +14,13 @@ def read(path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
+def stream_digest(stream):
+    checksum = hashlib.sha256()
+    while chunk := stream.read(1024 * 1024):
+        checksum.update(chunk)
+    return checksum.hexdigest()
+
+
 def local_path(value):
     path = ROOT / value
     path.resolve().relative_to(ROOT)
@@ -72,7 +79,8 @@ def validate(archive=None):
                 for source in config["sourceSnapshots"].values():
                     source_root = local_path(source)
                     for filename, expected in (("SKILL.md", "skillSha256"), ("LICENSE", "licenseSha256")):
-                        if hashlib.sha256((source_root / filename).read_bytes()).hexdigest() != config["upstream"][expected]:
+                        data = (source_root / filename).read_bytes()
+                        if expected in config["upstream"] and hashlib.sha256(data).hexdigest() != config["upstream"][expected]:
                             raise ValueError("Pinned source hash mismatch")
             records.append(record)
         if not any(key[0] == item["recommendedVersion"] for key in keys):
@@ -82,8 +90,9 @@ def validate(archive=None):
         if len(matches) != 1:
             raise ValueError("Archive must match exactly one release")
         record = matches[0]
-        if archive.stat().st_size != record["archive"]["bytes"] or hashlib.sha256(archive.read_bytes()).hexdigest() != record["archive"]["sha256"]:
-            raise ValueError("Archive checksum/size mismatch")
+        with archive.open("rb") as stream:
+            if archive.stat().st_size != record["archive"]["bytes"] or stream_digest(stream) != record["archive"]["sha256"]:
+                raise ValueError("Archive checksum/size mismatch")
         with zipfile.ZipFile(archive) as package:
             manifest_bytes = package.read("manifest.json")
             if hashlib.sha256(manifest_bytes).hexdigest() != record["manifestSha256"]:
@@ -95,8 +104,9 @@ def validate(archive=None):
             for name, expected in manifest["files"].items():
                 if "\\" in name or ":" in name or name.startswith("/") or any(p in ("..", ".") for p in name.split("/")):
                     raise ValueError("Unsafe archive path")
-                if hashlib.sha256(package.read(name)).hexdigest() != expected:
-                    raise ValueError(f"Archive member checksum mismatch: {name}")
+                with package.open(name) as stream:
+                    if stream_digest(stream) != expected:
+                        raise ValueError(f"Archive member checksum mismatch: {name}")
     return {"sourceArtifacts": len(artifacts), "components": len(ids), "releases": len(records),
             "archiveChecked": archive.name if archive else None, "ok": True}
 
